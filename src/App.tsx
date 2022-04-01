@@ -1,11 +1,13 @@
 import { GlobalStyle } from './styles/global';
 
+import { Home } from './pages/home';
+
 function App() {
 
   return (
     <>
       <GlobalStyle />
-      <h1>Hello world</h1>
+      <Home />
     </>
   )
 }
