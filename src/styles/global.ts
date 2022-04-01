@@ -17,8 +17,12 @@ export const GlobalStyle = createGlobalStyle`
             font-size: 87.5%;
         }
     }
+
     :root {
-      --color-white: '#fff';    
+      --color-white: #fff;
+      --color-red: #FF3030;
+      --color-orange: #FFA800;
+      --color-brown: #75674C;
     }   
     
     
