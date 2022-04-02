@@ -16,6 +16,12 @@ export const Home: React.FC = () => {
       <div className="head__welcome white">
         <h1>Bem vindo galera</h1>
       </div>
+      <div className="head__welcome white">
+        <h1>Testeeee</h1>
+      </div>
+      <div className="head__welcome white">
+        <h1>Testeeee</h1>
+      </div>
     </Container>
   );
 }
