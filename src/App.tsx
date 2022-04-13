@@ -1,14 +1,13 @@
 import { GlobalStyle } from './styles/global';
 
-import { Home } from './pages/home';
-import { Intro } from './pages/intro';
+import {AppRoutes} from './routes'
 
 function App() {
 
   return (
     <>
       <GlobalStyle />
-      <Intro />
+      <AppRoutes />
     </>
   )
 }

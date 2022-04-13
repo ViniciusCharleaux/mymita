@@ -51,12 +51,12 @@ export const Container = styled.div`
       justify-content: center;
 
       button {
-        width: 19.3125rem;
-        height: 5.75rem;
+        width: 14rem;
+        height: 4.75rem;
         background-color: var(--color-red);
         border-radius: 40px;
         color: var(--color-white);
-        font-size: 3rem;
+        font-size: 2.5rem;
         box-shadow: 10px 5px 25px black;
         transition: 0.3s box-shadow ease-in;
 
