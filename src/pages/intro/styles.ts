@@ -8,60 +8,62 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  header {
-    width: 25%;
-    height: 12.5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .header__links {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      a {
-        color: black;
-        text-decoration: underline;
-        font-size: 1.5rem;
-        font-weight: bold;
-      }
-    }
-  }
-
   main {
     width: 100%;
-    height: 75%;
+    height: 80%;
     display: flex;
     flex-direction: row;
-    padding: 1rem 10rem;
+    padding: 0 6rem 0;
 
     justify-content: space-between;
     align-items: center;
 
     .main__login-container {
-      height: 80%;
-      width: 30%;
+      height: 95%;
+      width: 32%;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 1rem;
-      justify-content: center;
+      justify-content: space-around;
+      background-color: rgba(134, 123, 123, 0.14);
+      border-radius: 70px;
 
-      button {
-        width: 14rem;
-        height: 4.75rem;
+      .main__input-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center ;
+      }
+
+      input{
+        height: 3rem;
+        width: 17rem;
+        border-radius: 20px;
+        box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
+      }
+
+      .button__login {
+        width: 17rem;
+        height: 4.5rem;
         background-color: var(--color-red);
         border-radius: 40px;
         color: var(--color-white);
         font-size: 2.5rem;
-        box-shadow: 10px 5px 25px black;
         transition: 0.3s box-shadow ease-in;
+      }
 
-        &:hover {
-          box-shadow: 10px 5px 25px white;
+      .main__social{
+        width: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .button__social{
+          background-color: #fff;
+          height: 70px;
+          width: 70px;
+          border-radius: 20px;
+          border: 1px solid rgba(255, 168, 0, 1);
         }
       }
     }
