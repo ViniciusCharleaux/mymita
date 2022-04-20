@@ -6,6 +6,7 @@ import {FcGoogle} from 'react-icons/fc'
 import {BsFacebook} from 'react-icons/bs'
 import { images } from '../../constants';
 import { useState } from 'react';
+import {createUser, CreateUserData} from '../../interfaces/user'
 
 interface LoginData {
   name: string;
@@ -25,6 +26,17 @@ export const Intro: React.FC = () => {
     }
 
     console.log(loginData)
+
+    const CUD:CreateUserData = {
+      Contato:"",
+      Endereco:"",
+      Nome:"",
+      Privilegio:"",
+      Senha:"",
+      Usuario:""
+    }
+
+    await createUser(CUD)
 
     //chamar função e passar loginData
 
