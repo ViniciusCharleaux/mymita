@@ -29,6 +29,12 @@ export const Container = styled.div`
       background-color: rgba(134, 123, 123, 0.14);
       border-radius: 70px;
 
+      a{
+        color: var(--color-red);
+        text-decoration: underline;
+        font-family: 'fredoka one';
+      }
+
       .main__input-container{
         display: flex;
         flex-direction: column;
@@ -40,6 +46,11 @@ export const Container = styled.div`
         width: 17rem;
         border-radius: 20px;
         box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
+        padding: 0 2rem ;
+      }
+
+      label{
+        font-family: 'fredoka one';
       }
 
       .button__login {
@@ -50,6 +61,7 @@ export const Container = styled.div`
         color: var(--color-white);
         font-size: 2.5rem;
         transition: 0.3s box-shadow ease-in;
+        font-family: 'fredoka one';
       }
 
       .main__social{
@@ -73,6 +85,13 @@ export const Container = styled.div`
       width: 50%;
       display: flex;
       flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      img{
+        width: 100%;
+      }
     }
   }
 `
