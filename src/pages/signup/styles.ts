@@ -5,16 +5,18 @@ export const Container = styled.div`
   width: 100vw;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 
   main {
-    width: 100%
+    width: 100%;
     height: 80%;
+    display: flex;
+    flex-direction: row;
     padding: 0 6rem 0;
     
     justify-content: space-between;
-    align-items: left;
+    align-items: center;
 
     .main__signup-container {
       height: 95%;
@@ -30,7 +32,7 @@ export const Container = styled.div`
     .main__input-container{
       display: flex;
       flex-direction: column;
-      align-items: center ;
+      align-items: left ;
     }
 
     input{
@@ -42,7 +44,7 @@ export const Container = styled.div`
     }
 
     label{
-      font-family: 'fredoka one';
+      font-family: 'arial';
     }
 
     .button__signup {
