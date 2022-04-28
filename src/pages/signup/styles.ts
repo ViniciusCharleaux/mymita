@@ -19,14 +19,14 @@ export const Container = styled.div`
     align-items: center;
 
     .main__signup-container {
-      height: 95%;
-      width: 32%;
+      height: 90%;
+      width: 45%;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 1rem;
       justify-content: space-around;
-      background-color: rgba(134, 123, 123, 0.14);
+      
       border-radius: 70px;
 
     .main__input-container{
@@ -35,25 +35,46 @@ export const Container = styled.div`
       align-items: left ;
     }
 
-    input{
-      height: 2.5rem;
-      width: 17rem;
-      border-radius: 20px;
-      box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
-      padding: 0 2rem ;
+    label{
+      font-family: 'fredoka one';
     }
 
-    label{
-      font-family: 'arial';
+    input{
+      height: 2.5rem;
+      width: 20rem;
+      border-radius: 20px;
+      box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
+      background-color: #e4e4e4;
+      font-family: 'fredoka one';
+      padding: 0 2rem ;
+      margin: 0.5rem 0;
+    }
+
+
+    .main__buttons-container {
+      display:flex;
+      flex-direction: row;
+    }
+
+    button {
+      width: 10rem;
+      height: 3rem;
+      border-radius: 40px;
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+      box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
     }
 
     .button__signup {
-      width: 17rem;
-      height: 4.5rem;
       background-color: var(--color-red);
-      border-radius: 40px;
       color: var(--color-white);
-      font-size: 2.5rem;
+      transition: 0.3s box-shadow ease-in;
+      font-family: 'fredoka one';
+    }
+
+    .button__cancel {
+      background-color: #FFA800;
+      color: var(--color-white);
       transition: 0.3s box-shadow ease-in;
       font-family: 'fredoka one';
     }
@@ -76,5 +97,4 @@ export const Container = styled.div`
     }
 
   }
-
 `

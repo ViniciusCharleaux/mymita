@@ -13,6 +13,7 @@ export const Signup: React.FC = () => {
                         <label htmlFor="">nome:</label>
                         <input
                             type="text"
+                            placeholder="Digite aqui..."
                         //onChange={(e) => setName(e.target.value)}
                         />
                     </div>
@@ -21,6 +22,7 @@ export const Signup: React.FC = () => {
                         <label htmlFor="">email:</label>
                         <input
                             type="email"
+                            placeholder="Digite aqui..."
                         //onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
@@ -29,6 +31,7 @@ export const Signup: React.FC = () => {
                         <label htmlFor="">senha:</label>
                         <input
                             type="password"
+                            placeholder="Digite aqui..."
                         //onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
@@ -37,18 +40,26 @@ export const Signup: React.FC = () => {
                         <label htmlFor="">repita a senha:</label>
                         <input
                             type="password"
-                        //onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Digite aqui..."
+                        //onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
-                    <button
-                        className='button__signup'
-                    //onClick={handleSignUp}
-                    >
-                        cadastrar
-                    </button>
+                    <div className="main__buttons-container">
+                        <button
+                            className='button__signup'
+                        //onClick={handleSignUp}
+                        >
+                            cadastrar
+                        </button>
 
-                    <a href="">cancelar</a>
+                        <button
+                            className='button__cancel'
+                        //onClick={handleCancel}
+                        >
+                            cancelar
+                        </button>
+                    </div>
                 </div>
             </main>
             <footer></footer>
