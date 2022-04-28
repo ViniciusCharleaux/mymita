@@ -92,7 +92,7 @@ export const Intro: React.FC = () => {
             </button>
           </div>
 
-          <a href="">não possui uma conta ?</a>
+          <a href="/cadastro">não possui uma conta ?</a>
 
         </div>
         <div className='main__image'>

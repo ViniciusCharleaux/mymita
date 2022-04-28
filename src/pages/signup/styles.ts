@@ -5,16 +5,16 @@ export const Container = styled.div`
   width: 100vw;
 
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0 6rem 0 0;
 
   main {
     width: 100%;
     height: 80%;
     display: flex;
     flex-direction: row;
-    padding: 0 6rem 0;
-    
+  
     justify-content: space-between;
     align-items: center;
 
@@ -24,10 +24,7 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1rem;
-      justify-content: space-around;
-      
-      border-radius: 70px;
+      justify-content: space-evenly;
 
     .main__input-container{
       display: flex;
@@ -72,7 +69,15 @@ export const Container = styled.div`
       font-family: 'fredoka one';
     }
 
-    .button__cancel {
+    a {
+      width: 10rem;
+      height: 3rem;
+      border-radius: 40px;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
+      text-decoration: none;
+      text-align: center;
       background-color: #FFA800;
       color: var(--color-white);
       transition: 0.3s box-shadow ease-in;
@@ -89,11 +94,6 @@ export const Container = styled.div`
       img{
         width: 100%;
       }
-
-    a{
-      color: var(--color-red);
-      text-decoration: underline;
-      font-family: 'fredoka one';
     }
 
   }

@@ -1,8 +1,14 @@
 import { Container } from './styles';
 
+import { Header } from '../../components/Header'
+
 export const Signup: React.FC = () => {
     return (
         <Container>
+            <Header
+                title1='cardápio'
+                title2='contato'
+            />
             <main>
                 <div className="main__image">
                     <h1>Cadastro</h1>
@@ -53,12 +59,7 @@ export const Signup: React.FC = () => {
                             cadastrar
                         </button>
 
-                        <button
-                            className='button__cancel'
-                        //onClick={handleCancel}
-                        >
-                            cancelar
-                        </button>
+                        <a href="/">cancelar</a>
                     </div>
                 </div>
             </main>
