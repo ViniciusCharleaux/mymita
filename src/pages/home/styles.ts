@@ -12,7 +12,7 @@ export const Container = styled.div`
     width: 100%;
     display: flex;
 
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 
     color: white;
