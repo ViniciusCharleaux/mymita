@@ -3,6 +3,7 @@ import { Container } from './styles';
 import { Header } from '../../components/Header'
 import { useState } from 'react';
 import { images } from '../../constants';
+import { createUser, CreateUserData } from '../../interfaces/user';
 
 export const Signup: React.FC = () => {
 
@@ -11,29 +12,28 @@ export const Signup: React.FC = () => {
     const [password, setPassword] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')
 
-/*    const handleSignUp = async() => {
+    const handleSignUp = async() => {
 
-        const loginData: LoginData = {
-          name,
-          password
+
+        if(password === confirmPassword){
+
+            const CUD:CreateUserData = {
+                Nome: name,
+                Privilegio: '1',
+                Senha: password,
+                Email: email
+            }
+            
+            await createUser(CUD,'')
+
+        }else{
+            alert('As senhas sao diferentes!')
         }
-    
-        console.log(loginData)
-    
-        const CUD:CreateUserData = {
-          Contato:"",
-          Endereco:"",
-          Nome:"",
-          Privilegio:"",
-          Senha:"",
-          Usuario:""
-        }
-    
-        await createUser(CUD)
+        
     
         //chamar função e passar loginData
     
-      }*/
+      }
 
     return (
         <Container>
@@ -87,7 +87,7 @@ export const Signup: React.FC = () => {
                     <div className="main__buttons-container">
                         <button
                             className='button__signup'
-                        //onClick={handleSignUp}
+                            onClick={handleSignUp}
                         >
                             cadastrar
                         </button>

@@ -8,6 +8,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: flex-end;
 
+  overflow: hidden;
+
   main {
     width: 100%;
     height: 100%;
@@ -19,7 +21,7 @@ export const Container = styled.div`
 
     .main__image {
       height: 100%;
-      width: 65%;
+      width: 55%;
       display: flex;
       flex-direction: column;
       align-items: center;

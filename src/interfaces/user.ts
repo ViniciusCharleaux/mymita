@@ -3,12 +3,11 @@ import {firebaseConfig} from '../services/firebase'
 import { child, get, getDatabase, push, ref, set } from "firebase/database";
 
 export interface CreateUserData{
-    
-    Endereco: string
+  
+    Email: string;  
     Nome: string
     Privilegio: string
     Senha: string
-    Contato: string
 
 }
 
@@ -31,11 +30,9 @@ const database = getDatabase();
 export const createUser = async(Data:CreateUserData, Email:string)=> {
   
   set(child(ref(database), Email), {    
-    Endereco: Data.Endereco,
     Nome: Data.Nome,
     Privilegio: Data.Privilegio,
     Senha: Data.Senha,
-    Contato: Data.Contato 
   });
 
 }
