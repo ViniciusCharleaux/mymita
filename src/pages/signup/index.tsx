@@ -1,26 +1,59 @@
 import { Container } from './styles';
 
 import { Header } from '../../components/Header'
+import { useState } from 'react';
+import { images } from '../../constants';
 
 export const Signup: React.FC = () => {
+
+    const [name, setName] = useState<string>('')
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [confirmPassword, setConfirmPassword] = useState<string>('')
+
+/*    const handleSignUp = async() => {
+
+        const loginData: LoginData = {
+          name,
+          password
+        }
+    
+        console.log(loginData)
+    
+        const CUD:CreateUserData = {
+          Contato:"",
+          Endereco:"",
+          Nome:"",
+          Privilegio:"",
+          Senha:"",
+          Usuario:""
+        }
+    
+        await createUser(CUD)
+    
+        //chamar função e passar loginData
+    
+      }*/
+
     return (
         <Container>
-            <Header
-                title1='cardápio'
-                title2='contato'
-            />
+            
             <main>
                 <div className="main__image">
-                    <h1>Cadastro</h1>
+                    <img src={images.cadastroImg} alt="cadastro image" />
                 </div>
 
                 <div className="main__signup-container">
+                    <Header
+                        title1='cardápio'
+                        title2='contato'
+                    />
                     <div className="main__input-container">
                         <label htmlFor="">nome:</label>
                         <input
                             type="text"
                             placeholder="Digite aqui..."
-                        //onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </div>
 
@@ -29,7 +62,7 @@ export const Signup: React.FC = () => {
                         <input
                             type="email"
                             placeholder="Digite aqui..."
-                        //onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
 
@@ -38,7 +71,7 @@ export const Signup: React.FC = () => {
                         <input
                             type="password"
                             placeholder="Digite aqui..."
-                        //onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
@@ -47,7 +80,7 @@ export const Signup: React.FC = () => {
                         <input
                             type="password"
                             placeholder="Digite aqui..."
-                        //onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                     </div>
 

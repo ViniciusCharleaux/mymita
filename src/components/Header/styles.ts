@@ -8,5 +8,6 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    font-family: 'fredoka one';
     
 `

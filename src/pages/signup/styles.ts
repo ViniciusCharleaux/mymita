@@ -7,16 +7,28 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 0 6rem 0 0;
 
   main {
     width: 100%;
-    height: 80%;
+    height: 100%;
     display: flex;
     flex-direction: row;
   
     justify-content: space-between;
     align-items: center;
+
+    .main__image {
+      height: 100%;
+      width: 65%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      img{
+        width: 100%;
+      }
+    }
+    
 
     .main__signup-container {
       height: 90%;
@@ -83,18 +95,7 @@ export const Container = styled.div`
       transition: 0.3s box-shadow ease-in;
       font-family: 'fredoka one';
     }
-
-    .main__image {
-      height: 80%;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      img{
-        width: 100%;
-      }
-    }
-
+  
+}
   }
 `
