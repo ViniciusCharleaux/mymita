@@ -92,7 +92,7 @@ export const Signup: React.FC = () => {
                             cadastrar
                         </button>
 
-                        <a href="/">cancelar</a>
+                        <a href="/" className = "button__cancel">cancelar</a>
                     </div>
                 </div>
             </main>

@@ -11,7 +11,7 @@ export const Header: React.FC<HeaderProps> = ({title1, title2}) => {
         <Container>
 
             <h2>{title1}</h2>
-            <img src={images.MyMitaLogo} alt="logo" />
+            <a href="/"> <img src={images.MyMitaLogo} alt="logo" /></a>
             <h2>{title2}</h2>
 
         </Container>

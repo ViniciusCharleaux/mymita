@@ -48,16 +48,19 @@ export const Container = styled.div`
 
     label{
       font-family: 'fredoka one';
+      font-size: 15pt;
     }
 
     input{
-      height: 2.5rem;
+      height: 3rem;
       width: 20rem;
-      border-radius: 20px;
-      box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
+      border-radius: 15px;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.30);
       background-color: #e4e4e4;
+      color: rgba(0, 0, 0, 0.5);
       font-family: 'fredoka one';
-      padding: 0 2rem ;
+      font-size: 12pt;
+      padding: 0 1rem ;
       margin: 0.5rem 0;
     }
 
@@ -73,7 +76,7 @@ export const Container = styled.div`
       border-radius: 40px;
       font-size: 1.5rem;
       margin: 0 0.5rem;
-      box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
+
     }
 
     .button__signup {
@@ -83,13 +86,12 @@ export const Container = styled.div`
       font-family: 'fredoka one';
     }
 
-    a {
+    .button__cancel{
       width: 10rem;
       height: 3rem;
       border-radius: 40px;
       font-size: 1.5rem;
       padding: 0.5rem;
-      box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
       text-decoration: none;
       text-align: center;
       background-color: #FFA800;
