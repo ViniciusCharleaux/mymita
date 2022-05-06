@@ -27,17 +27,20 @@ export const Intro: React.FC = () => {
 
     console.log(loginData)
 
-    const Email = "";
+    
 
     const CUD:CreateUserData = {
-      Endereco:"",
-      Nome:"",
-      Privilegio:"",
-      Senha:"",
-      Contato:""
+      Endereco:"123",
+      Nome:"caue",
+      Privilegio:"1",
+      Senha:"123",
+      Contato:"caue",
+      Email: "caue"
     }
 
-    await createUser(CUD, Email)
+    await createUser(CUD)
+
+    //await busca()
 
     //chamar função e passar loginData
 
