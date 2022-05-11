@@ -1,82 +1,59 @@
 import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
-import { child, get, getDatabase, push, ref, set } from "firebase/database";
+import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore'
 
 export interface CreateUserData{
-  
-    Email: string;  
-    Nome: string
-    Privilegio: string
-    Senha: string
-
-}
-
-interface UserData{
-
-  Key:string  
+    
   Endereco: string
   Nome: string
   Privilegio: string
   Senha: string
   Contato: string
+  Email: string
 
 }
 
+export interface UserData{
+
+Key:string  
+Endereco: string
+Nome: string
+Privilegio: string
+Senha: string
+Contato: string
+
+}
 
 const app = initializeApp(firebaseConfig);
 
-const database = getDatabase();
+const firestore = getFirestore();
 
-export const createUser = async(Data:CreateUserData, Email:string)=> {
-  
-  set(child(ref(database), Email), {    
-    Nome: Data.Nome,
-    Privilegio: Data.Privilegio,
-    Senha: Data.Senha,
-  });
+export const createUser = async(Data:CreateUserData)=> {
 
+  const referencia = collection(firestore, 'usuarios');
+
+  await setDoc(doc(referencia), {
+    endereco: Data.Endereco,
+    nome: Data.Nome,    
+    senha: Data.Senha,
+    contato: Data.Contato,
+    email: Data.Email
+  })
 }
 
-const recebeUser = async (Email:string, Senha:string):Promise<UserData> => {
 
-  var returnData:UserData = {
-    Key: "",
-    Endereco: "",
-    Nome: "",
-    Privilegio: "",
-    Senha: "",
-    Contato: ""
-};
+export const buscaLogin = async (emailUsuario: string, senhaUsuario: string) => {
+  
+  const refLogin = collection(firestore, 'usuarios');
 
-  get(child(ref(database), `/Usuarios/${Email}`)).then((snapshot) => {        
+  const q = query(refLogin, where("email", "==", emailUsuario), where("senha", "==", senhaUsuario));
 
-    if (snapshot.exists()) {
-      
-      if(Senha === snapshot.val().Senha){
+  const querySnapshot = await getDocs(q);      
 
-        returnData = {
+  querySnapshot.forEach(doc => {
 
-            Key: Email,
-            Endereco: snapshot.val().Endereco,
-            Nome: snapshot.val().Nome,
-            Privilegio: snapshot.val().Privilegio,
-            Senha: snapshot.val().Senha,
-            Contato: snapshot.val().Contato
+    console.log(doc.data());
 
-        }
-        
-        return returnData;
-      }
-
-      snapshot.val();
-    } else {
-      console.log("No data available");
-      
-    }
-  }).catch((error) => {
-    console.error(error);
-  });  
-
-  return returnData;
-
+  });
+  
 }
