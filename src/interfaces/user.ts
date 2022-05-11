@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
-import { collection, doc, getFirestore, query, setDoc, where } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore'
 
 export interface CreateUserData{
     
@@ -13,7 +13,7 @@ export interface CreateUserData{
 
 }
 
-interface UserData{
+export interface UserData{
 
 Key:string  
 Endereco: string
@@ -46,5 +46,14 @@ export const buscaLogin = async (emailUsuario: string, senhaUsuario: string) => 
   
   const refLogin = collection(firestore, 'usuarios');
 
-  const q = query(refLogin, where("email", "==", emailUsuario))
+  const q = query(refLogin, where("email", "==", emailUsuario), where("senha", "==", senhaUsuario));
+
+  const querySnapshot = await getDocs(q);      
+
+  querySnapshot.forEach(doc => {
+
+    console.log(doc.data());
+
+  });
+  
 }
