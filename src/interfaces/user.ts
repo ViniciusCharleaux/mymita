@@ -43,6 +43,8 @@ export const createUser = async(Data:CreateUserData)=> {
 
 
 export const buscaLogin = async (emailUsuario: string, senhaUsuario: string) => {
+
+  console.log(emailUsuario, senhaUsuario)
   
   const refLogin = collection(firestore, 'usuarios');
 

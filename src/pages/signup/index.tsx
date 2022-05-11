@@ -20,11 +20,14 @@ export const Signup: React.FC = () => {
             const CUD:CreateUserData = {
                 Nome: name,
                 Privilegio: '1',
+                Contato: "",
+                Endereco: "",                
                 Senha: password,
                 Email: email
+
             }
             
-            await createUser(CUD,'')
+            await createUser(CUD)
 
         }else{
             alert('As senhas sao diferentes!')
