@@ -1,17 +1,27 @@
 
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
-import {Home} from '../pages/home'
-import {Signup} from '../pages/signup'
+import {AppRoutes} from './appRoutes';
+import {AuthRoutes} from './authRoutes';
 
-export const AppRoutes: React.FC = () => {
+import {useAuth} from '../hooks/auth'
+
+export const Routes: React.FC = () => {
+
+  const {user, updateLogin} = useAuth()
+
+  useEffect(() => {
+    updateLogin()
+  },[])
+
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cadastro" element={<Signup />} />
-      </Routes>
-    </BrowserRouter>
+    !user ?
+      (
+        <AppRoutes />
+      ):
+      (
+        <AuthRoutes/>
+      )
   )
 }

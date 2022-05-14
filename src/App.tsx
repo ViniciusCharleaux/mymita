@@ -1,14 +1,18 @@
 import { GlobalStyle } from './styles/global';
-import {AppRoutes} from './routes'
+import {Routes} from './routes'
 
 import {AppProvider} from './hooks'
+import { useEffect } from 'react';
+
+import {useAuth} from './hooks/auth'
 
 function App() {
 
+  
   return (
     <AppProvider>
       <GlobalStyle />
-      <AppRoutes />
+      <Routes />
     </AppProvider>
   )
 }

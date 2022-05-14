@@ -1,12 +1,12 @@
 import { Container } from './styles';
-
 import {Header} from '../../components/Header'
-
 import {FcGoogle} from 'react-icons/fc'
 import {BsFacebook} from 'react-icons/bs'
 import { images } from '../../constants';
 import { useState } from 'react';
-import {buscaLogin, createUser, CreateUserData} from '../../interfaces/user'
+// import {buscaLogin, createUser, CreateUserData} from '../../interfaces/user'
+
+import {useNavigate} from 'react-router-dom'
 
 import {useAuth} from '../../hooks/auth';
 
@@ -22,9 +22,15 @@ export const Home: React.FC = () => {
 
   const {signIn} = useAuth()
 
+  const navigate = useNavigate()
+
   const handleLogin = async() => {
 
-    await signIn({email, password})
+    const res = await signIn({email, password})
+
+    if(res){
+      navigate('/dashboard')
+    }
 
   }
 

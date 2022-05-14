@@ -4,10 +4,11 @@ import {firebaseConfig} from '../services/firebase'
 import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore'
 import md5 from 'md5';
 
-
 interface AuthContextType { 
     user: User | undefined;
-    signIn: (params: LoginData) => Promise<void>;
+    signIn: (params: LoginData) => Promise<Boolean>;
+    logOut: () => Boolean;
+    updateLogin: () => void;
 }
 
 interface User {
@@ -64,10 +65,14 @@ function AuthContextProvider(props: AuthContextProviderProps) {
               loginUser = {
                 Contato: '',
                 Endereco: '',
-                Key: md5(doc.id),
+                Key: doc.id,
                 Nome: doc.data().nome,
                 Privilegio: '1',
               }
+
+              setUser(loginUser)
+
+              loginUser.Key = md5(loginUser.Key)
 
             console.log(loginUser)
             alert(loginUser.Key)
@@ -79,15 +84,44 @@ function AuthContextProvider(props: AuthContextProviderProps) {
 
           // localStorage.setItem('@Portal:token', );
           localStorage.setItem('@MyMita:user', JSON.stringify(loginUser));
+
+          return true;
+
+
+        }else{
+          alert('login não encontrado, email ou senha errados')
+          return false
         }
       
-      
       }, []);
+
+
+      const updateLogin = (() => {
+
+        const user = localStorage.getItem("@MyMita:user");
+
+        if(user){
+          console.log(JSON.parse(user))
+          setUser(JSON.parse(user))
+        }
+
+      })
+
+      const logOut = useCallback(() => {
+
+        localStorage.removeItem('@MyMita:user');
+
+        return true
+
+      }, []);
+
 
       return (
         <AuthContext.Provider value={{ 
             user,
             signIn,
+            logOut,
+            updateLogin
           }}>
           {props.children}
         </AuthContext.Provider>
