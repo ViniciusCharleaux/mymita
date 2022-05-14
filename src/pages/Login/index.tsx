@@ -13,7 +13,7 @@ interface LoginData {
   password: string;
 }
 
-export const Intro: React.FC = () => {
+export const Login: React.FC = () => {
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')

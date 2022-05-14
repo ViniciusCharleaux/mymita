@@ -44,18 +44,13 @@ export const createUser = async(Data:CreateUserData)=> {
 
 export const buscaLogin = async (emailUsuario: string, senhaUsuario: string) => {
 
-  console.log(emailUsuario, senhaUsuario)
-  
   const refLogin = collection(firestore, 'usuarios');
 
   const q = query(refLogin, where("email", "==", emailUsuario), where("senha", "==", senhaUsuario));
-
   const querySnapshot = await getDocs(q);      
 
   querySnapshot.forEach(doc => {
-
     console.log(doc.data());
-
   });
   
 }
