@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
 import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore'
+import {useAuth} from '../hooks/auth'
+
 
 export interface CreateUserData{
     
@@ -15,12 +17,12 @@ export interface CreateUserData{
 
 export interface UserData{
 
-Key:string  
-Endereco: string
-Nome: string
-Privilegio: string
-Senha: string
-Contato: string
+  Key:string  
+  Endereco: string
+  Nome: string
+  Privilegio: string
+  Senha: string
+  Contato: string
 
 }
 
@@ -32,30 +34,23 @@ export const createUser = async(Data:CreateUserData)=> {
 
   const referencia = collection(firestore, 'usuarios');
 
-  await setDoc(doc(referencia), {
-    endereco: Data.Endereco,
-    nome: Data.Nome,    
-    senha: Data.Senha,
-    contato: Data.Contato,
-    email: Data.Email
-  })
-}
+  const {signIn} = useAuth()
 
+  try {
 
-export const buscaLogin = async (emailUsuario: string, senhaUsuario: string) => {
+    await setDoc(doc(referencia), {
+      endereco: Data.Endereco,
+      nome: Data.Nome,    
+      senha: Data.Senha,
+      contato: Data.Contato,
+      email: Data.Email
+    })
 
-  console.log(emailUsuario, senhaUsuario)
-  
-  const refLogin = collection(firestore, 'usuarios');
+    await signIn({email: Data.Email, password: Data.Senha})
+    
+  } catch (err) {
+    alert(err)
+  }
 
-  const q = query(refLogin, where("email", "==", emailUsuario), where("senha", "==", senhaUsuario));
-
-  const querySnapshot = await getDocs(q);      
-
-  querySnapshot.forEach(doc => {
-
-    console.log(doc.data());
-
-  });
-  
+ 
 }
