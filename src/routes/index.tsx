@@ -8,12 +8,7 @@ import {useAuth} from '../hooks/auth'
 
 export const Routes: React.FC = () => {
 
-  const {user, updateLogin} = useAuth()
-
-  useEffect(() => {
-    updateLogin()
-  },[])
-
+  const {user} = useAuth()
 
   return (
     !user ?

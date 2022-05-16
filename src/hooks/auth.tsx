@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState, useContext, ReactNode } from "react";
+import React, { createContext, useCallback, useState, useContext, ReactNode, useEffect } from "react";
 import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
 import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore'
@@ -38,6 +38,9 @@ const AuthContext = createContext({} as AuthContextType);
 
 function AuthContextProvider(props: AuthContextProviderProps) {
 
+  useEffect(() => {
+    updateLogin()
+  },[])
 
     const [user, setUser] = useState<User>();
 
