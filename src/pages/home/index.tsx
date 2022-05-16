@@ -9,6 +9,7 @@ import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
 
 import {useAuth} from '../../hooks/auth';
+import {useToast} from '../../hooks/toast';
 
 interface LoginData {
   email: string;
@@ -21,6 +22,7 @@ export const Home: React.FC = () => {
   const [password, setPassword] = useState<string>('')
 
   const {signIn} = useAuth()
+  const {toastTopSuccess} = useToast()
 
   const navigate = useNavigate()
 
@@ -29,6 +31,7 @@ export const Home: React.FC = () => {
     const res = await signIn({email, password})
 
     if(res){
+      toastTopSuccess('Login bem sucedido')
       navigate('/dashboard')
     }
 

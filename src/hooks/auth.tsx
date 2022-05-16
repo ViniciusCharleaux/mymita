@@ -4,14 +4,19 @@ import {firebaseConfig} from '../services/firebase'
 import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore'
 import md5 from 'md5';
 
+import { CreateUserData } from '../interfaces/user'
+
 interface AuthContextType { 
     user: User | undefined;
     signIn: (params: LoginData) => Promise<Boolean>;
     logOut: () => Boolean;
     updateLogin: () => void;
+    createUser: (params: CreateUserData) => Promise<Number>
 }
 
-interface User {
+
+
+export interface User {
     Key:string  
     Endereco: string
     Nome: string
@@ -43,6 +48,7 @@ function AuthContextProvider(props: AuthContextProviderProps) {
   },[])
 
     const [user, setUser] = useState<User>();
+
 
 
     const signIn = useCallback(async (data: LoginData) => {
@@ -78,7 +84,6 @@ function AuthContextProvider(props: AuthContextProviderProps) {
               loginUser.Key = md5(loginUser.Key)
 
             console.log(loginUser)
-            alert(loginUser.Key)
 
         });
 
@@ -119,12 +124,51 @@ function AuthContextProvider(props: AuthContextProviderProps) {
       }, []);
 
 
+
+      const createUser = async ( Data:CreateUserData )=> {
+
+        const ref = collection(firestore, 'usuarios');
+
+        const q = query(ref, where("email", "==", Data.Email));
+        const querySnapshot = await getDocs(q);  
+        
+        if(querySnapshot.size > 0){
+
+          return 0;
+
+        }else{
+
+          try {
+      
+            await setDoc(doc(ref), {
+              endereco: Data.Endereco,
+              nome: Data.Nome,    
+              senha: Data.Senha,
+              contato: Data.Contato,
+              email: Data.Email
+            })
+        
+            await signIn({email: Data.Email, password: Data.Senha})
+  
+            return 1
+            
+          } catch (err) {
+              console.log(err)
+            return 2
+          }
+        }
+
+      }
+      
+
+
       return (
         <AuthContext.Provider value={{ 
             user,
             signIn,
             logOut,
-            updateLogin
+            updateLogin,
+            createUser
           }}>
           {props.children}
         </AuthContext.Provider>
