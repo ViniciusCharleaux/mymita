@@ -3,7 +3,13 @@ import { Container } from './styles';
 import { Header } from '../../components/Header'
 import { useState } from 'react';
 import { images } from '../../constants';
-import { createUser, CreateUserData } from '../../interfaces/user';
+import { CreateUserData } from '../../interfaces/user';
+
+import {useAuth} from '../../hooks/auth'
+import { useToast } from '../../hooks/toast';
+
+import {useNavigate} from 'react-router-dom'
+
 
 export const Signup: React.FC = () => {
 
@@ -12,26 +18,48 @@ export const Signup: React.FC = () => {
     const [password, setPassword] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')
 
+    const {createUser} = useAuth();
+    const {toastTopError, toastTopSuccess} = useToast();
+
+    const navigate = useNavigate()
+
     const handleSignUp = async() => {
 
+        if(password.length < 6){
 
-        if(password === confirmPassword){
-
-            const CUD:CreateUserData = {
-                Nome: name,
-                Privilegio: '1',
-                Contato: "",
-                Endereco: "",                
-                Senha: password,
-                Email: email
-
-            }
-            
-            await createUser(CUD)
+            toastTopError("A senha precisa ter no mínimo 6 digitos!")
 
         }else{
-            alert('As senhas sao diferentes!')
+            if(password === confirmPassword){
+
+                const CUD:CreateUserData = {
+                    Nome: name,
+                    Privilegio: '1',
+                    Contato: "",
+                    Endereco: "",                
+                    Senha: password,
+                    Email: email
+    
+                }
+                
+                const res = await createUser(CUD)
+    
+                if(res === 0){
+                    toastTopError('Email já cadastrado!')
+                }else if(res === 1){
+                    toastTopSuccess('Cadastro realizado com sucesso')
+                    navigate('/dashboard')
+                }else if(res == 2){
+                    toastTopError('Ops, algo deu errado, tente novamente mais tarde!')
+                }
+    
+            }else{
+                toastTopError("As senhas não batem!")
+            }
         }
+
+
+      
         
     
         //chamar função e passar loginData
