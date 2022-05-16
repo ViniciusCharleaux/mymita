@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import {Dashboard} from '../pages/dashboard'
 import { Home } from '../pages/home';
@@ -13,6 +13,10 @@ export const AuthRoutes: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/cadastro" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+            path="*"
+            element={<Navigate to="/dashboard" replace />}
+        />
       </Routes>
     </BrowserRouter>
   )

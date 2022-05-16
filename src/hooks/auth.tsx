@@ -146,8 +146,6 @@ function AuthContextProvider(props: AuthContextProviderProps) {
         
             await signIn({email: Data.Email, password: Data.Senha})
   
-            alert('sucesso')
-  
             return 1
             
           } catch (err) {

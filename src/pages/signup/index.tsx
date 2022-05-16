@@ -23,12 +23,11 @@ export const Signup: React.FC = () => {
 
     const navigate = useNavigate()
 
+
     const handleSignUp = async() => {
 
         if(password.length < 6){
-
             toastTopError("A senha precisa ter no mínimo 6 digitos!")
-
         }else{
             if(password === confirmPassword){
 
