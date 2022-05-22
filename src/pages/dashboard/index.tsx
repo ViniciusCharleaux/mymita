@@ -1,7 +1,8 @@
 import {Container} from './styles'
 
-import {useAuth} from '../../hooks/auth'
+import {images} from '../../constants'
 
+import {useAuth} from '../../hooks/auth'
 import {useNavigate} from 'react-router-dom'
 
 export const Dashboard: React.FC = () => {
@@ -17,8 +18,26 @@ export const Dashboard: React.FC = () => {
 
     return(
         <Container>
-            <button onClick={handleLogout}>Logout</button>
-            <h1>{"bem vindo "+user?.Nome}</h1>
+            <aside>
+                <div className="user__container">
+                    <img src={images.noUserImage} alt="user img" />
+                    <h1>{user?.Nome}</h1>
+                </div>
+
+                <div className="buttons__containers">
+                    <button className='address__button'>endereços</button>
+                    <button 
+                        className='logout__button'
+                        onClick={handleLogout}
+                    >
+                        sair
+                    </button>
+                </div>
+                
+            </aside>
+            <main>
+
+            </main>
         </Container>
     )
 }
