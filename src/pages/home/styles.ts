@@ -63,6 +63,11 @@ export const Container = styled.div`
         font-size: 2.5rem;
         transition: 0.3s box-shadow ease-in;
         font-family: 'fredoka one';
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
       }
 
       .main__social{

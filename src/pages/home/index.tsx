@@ -4,6 +4,9 @@ import {FcGoogle} from 'react-icons/fc'
 import {BsFacebook} from 'react-icons/bs'
 import { images } from '../../constants';
 import { useState } from 'react';
+
+import {MiniLoading} from '../../components/Loading';
+
 // import {buscaLogin, createUser, CreateUserData} from '../../interfaces/user'
 
 import {useNavigate} from 'react-router-dom'
@@ -20,6 +23,7 @@ export const Home: React.FC = () => {
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [loading, setLoading] = useState<Boolean>(false);
 
   const {signIn} = useAuth()
   const {toastTopSuccess} = useToast()
@@ -28,11 +32,19 @@ export const Home: React.FC = () => {
 
   const handleLogin = async() => {
 
+    setLoading(true)
+
     const res = await signIn({email, password})
 
     if(res){
       toastTopSuccess('Login bem sucedido')
-      navigate('/dashboard')
+      
+      setTimeout(() => {
+        setLoading(false);
+        navigate('/dashboard')
+      },1000);
+
+
     }
 
   }
@@ -68,6 +80,7 @@ export const Home: React.FC = () => {
             onClick={handleLogin}
           >
             login
+            {loading && <MiniLoading/>}
           </button>
 
           <div className="main__social">
