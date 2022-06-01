@@ -56,7 +56,7 @@ function AuthContextProvider(props: AuthContextProviderProps) {
 
         const refLogin = collection(firestore, 'usuarios');
         const q = query(refLogin, where("email", "==", data.email), where("senha", "==", data.password));
-
+      
         const querySnapshot = await getDocs(q);      
 
         let loginUser:User = {
