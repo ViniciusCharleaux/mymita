@@ -35,7 +35,9 @@ const cadastraPedido = async (Data:cardapios) => {
 const buscaPedido = async (Data:cardapios) => {
     const ref = collection(firestore, "pedidos");
 
-    const q = query(ref, where("[.key]", "==", Timestamp.now()));
+    const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
+
+    const q = query(ref, where("[.key]", "==", tempo));
       
     const querySnapshot = await getDocs(q); 
 

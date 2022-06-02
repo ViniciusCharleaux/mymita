@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useState, useContext, ReactNode } from "react";
 import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
-import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, Timestamp, where } from 'firebase/firestore'
 
 interface pedido{
     Guarnicao: string,
@@ -20,7 +20,7 @@ const cadastraPedido = async (Data:pedido) => {
 
 
     try {
-        await setDoc(doc(ref, "Chave gerada por timestamp"),{
+        await setDoc(doc(ref, (Timestamp.fromDate(new Date()).toString())),{
             guarnicao: Data.Guarnicao,
             mistura: Data.Mistura,
             salada: Data.Mistura,
@@ -37,6 +37,11 @@ const cadastraPedido = async (Data:pedido) => {
 }
 
 const buscaPedido = async (Data:pedido) => {
-    const ref = collection(firestore, "pedidos");
+    const ref = collection(firestore, "pedidos");    
 
+    const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
+
+    const q = query(ref, where("[.key]", "==", tempo));
+      
+    const querySnapshot = await getDocs(q); 
 }
