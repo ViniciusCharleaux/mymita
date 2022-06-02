@@ -25,7 +25,7 @@ export const Home: React.FC = () => {
   const [password, setPassword] = useState<string>('')
   const [loading, setLoading] = useState<Boolean>(false);
 
-  const {signIn} = useAuth()
+  const {signIn, user} = useAuth()
   const {toastTopSuccess} = useToast()
 
   const navigate = useNavigate()
@@ -78,6 +78,7 @@ export const Home: React.FC = () => {
           <button
             className='button__login'
             onClick={handleLogin}
+            // onClick={(event) => navigate('/dashboard')}
           >
             login
             {loading && <MiniLoading/>}

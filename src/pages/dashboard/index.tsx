@@ -12,8 +12,8 @@ export const Dashboard: React.FC = () => {
     const navigate = useNavigate()
 
     const handleLogout = () =>{
-        navigate('/')
         logOut()
+        navigate('/')
     }
 
     return(
