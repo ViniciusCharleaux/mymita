@@ -8,7 +8,7 @@ interface pedido{
     Mistura: string,
     Salada: string,
     Tamanho: string,
-    Valor: string
+    Valor: string,    
 }
 
 
@@ -20,12 +20,13 @@ const cadastraPedido = async (Data:pedido) => {
 
 
     try {
-        await setDoc(doc(ref, (Timestamp.fromDate(new Date()).toString())),{
+        await setDoc(doc(ref),{
             guarnicao: Data.Guarnicao,
             mistura: Data.Mistura,
             salada: Data.Mistura,
             tamanho: Data.Tamanho,
-            valor: Data.Valor
+            valor: Data.Valor,
+            data: Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"})
         })
         
         return 1
@@ -41,7 +42,7 @@ const buscaPedido = async (Data:pedido) => {
 
     const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
 
-    const q = query(ref, where("[.key]", "==", tempo));
+    const q = query(ref, where("data", "==", tempo));
       
     const querySnapshot = await getDocs(q); 
 }

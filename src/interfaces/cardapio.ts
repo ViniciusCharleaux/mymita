@@ -21,7 +21,8 @@ const cadastraPedido = async (Data:cardapios) => {
         await setDoc(doc(ref, (Timestamp.fromDate(new Date()).toString())),{
             guarnicao: Data.Guarnicao,
             mistura: Data.Mistura,
-            salada: Data.Mistura
+            salada: Data.Salada,
+            data: Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"})
         })
         
         return 1
