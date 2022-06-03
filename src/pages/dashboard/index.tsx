@@ -36,7 +36,6 @@ export const Dashboard: React.FC = () => {
                 
             </aside>
             <main>
-
             </main>
         </Container>
     )

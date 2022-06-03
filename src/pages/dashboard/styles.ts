@@ -10,7 +10,7 @@ export const Container = styled.div`
         width: 20%;
         height: 100%;
         background: linear-gradient(170.49deg, rgba(255, 0, 0, 0.8) -0.24%, rgba(255, 168, 0, 0.8) 105.77%);
-        border-radius: 0px 80px 80px 0px;
+        border-radius: 0px 60px 60px 0px;
 
         display: flex;
         flex-direction: column;
@@ -40,9 +40,9 @@ export const Container = styled.div`
         }
 
         .buttons__containers{
-
             width: 100%;
-            height: calc(100% - (10% + 4rem));
+            height: 100%;
+            // height: calc(100% - (10% + 4rem));
 
             display: flex;
             flex-direction: column;
