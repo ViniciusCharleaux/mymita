@@ -30,7 +30,7 @@ export const Container = styled.div`
 
 
             img{
-                width: 85px;
+                width: 57px;
                 border-radius: 50%;
             }
             
