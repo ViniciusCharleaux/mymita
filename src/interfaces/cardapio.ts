@@ -38,7 +38,7 @@ const buscaPedido = async (Data:cardapios) => {
 
     const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
 
-    const q = query(ref, where("[.key]", "==", tempo));
+    const q = query(ref, where("data", "==", tempo));
       
     const querySnapshot = await getDocs(q); 
 
