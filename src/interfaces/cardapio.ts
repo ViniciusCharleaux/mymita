@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
 import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, Timestamp, where } from 'firebase/firestore'
 
-interface cardapios{
+export interface Cardapio{
     Guarnicao: string,
     Mistura: string,
     Salada: string
@@ -13,12 +13,12 @@ interface cardapios{
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore();
 
-const cadastraPedido = async (Data:cardapios) => {
+export const cadastraCardapio = async (Data:Cardapio) => {
     const ref = collection(firestore, "cardapios");
 
 
     try {
-        await setDoc(doc(ref, (Timestamp.fromDate(new Date()).toString())),{
+        await setDoc(doc(ref),{
             guarnicao: Data.Guarnicao,
             mistura: Data.Mistura,
             salada: Data.Salada,
@@ -33,8 +33,8 @@ const cadastraPedido = async (Data:cardapios) => {
     }
 }
 
-const buscaPedido = async (Data:cardapios) => {
-    const ref = collection(firestore, "pedidos");
+export const buscaCardapio = async () => {
+    const ref = collection(firestore, "cardapios");
 
     const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
 
@@ -42,6 +42,7 @@ const buscaPedido = async (Data:cardapios) => {
       
     const querySnapshot = await getDocs(q); 
 
+    querySnapshot.forEach(QueryDocumentSnapshot=> console.log(QueryDocumentSnapshot.data()));
 }
 
         
