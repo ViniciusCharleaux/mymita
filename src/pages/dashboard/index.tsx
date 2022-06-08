@@ -5,8 +5,20 @@ import { images } from "../../constants";
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
+import { OrderContainer } from "../../components/OrderContainer";
 
 export const Dashboard: React.FC = () => {
+
+  const data = [{
+    name: "vinicius",
+    data: "25/10",
+    pagamento:"dinheiro"
+  },{
+    name: "cindel",
+    data: "25/11",
+    pagamento:"pix"
+  }]
+
   const { logOut, user } = useAuth();
 
   const navigate = useNavigate();
@@ -37,7 +49,16 @@ export const Dashboard: React.FC = () => {
           </div>
           <div className="center">
               <div className="left">
-                  
+                  <p>histórico de pedidos</p>
+                  <div className="historic-container">
+                    {data.map((pedido) => (
+                      <OrderContainer
+                        data={pedido.data}
+                        name={pedido.name}
+                        pagamento={pedido.pagamento}
+                      />
+                    ))}
+                  </div>
               </div>
               <div className="right">
 
