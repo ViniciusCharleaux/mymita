@@ -33,30 +33,30 @@ export const Order: React.FC = () => {
                     </div>
                     <div className="conteudo">                
                         <div className="guarnicoes">
-                            <label htmlFor="guarnicoes">Selecione as guarnições:</label>
+                            <label htmlFor="guarnicoes" className="titulo">Selecione as guarnições:</label>
                     
-                            <p><input type="checkbox"></input> 
-                            <label htmlFor="guarnicao1">Arroz</label></p>
+                            <p><input type="radio"></input> 
+                            <label htmlFor="guarnicao1">ARROZ</label></p>
 
-                            <p><input type="checkbox"></input> 
-                            <label htmlFor="guarnicao2">Feijão</label></p>
+                            <p><input type="radio"></input> 
+                            <label htmlFor="guarnicao2">FEIJÃO</label></p>
 
-                            <p><input type="checkbox"></input> 
-                            <label htmlFor="guarnicao3">Nhoque</label></p>
+                            <p><input type="radio"></input> 
+                            <label htmlFor="guarnicao3">NHOQUE</label></p>
 
-                            <p><input type="checkbox"></input> 
-                            <label htmlFor="guarnicao4">Batata</label></p>
+                            <p><input type="radio"></input> 
+                            <label htmlFor="guarnicao4">BATATA</label></p>
 
-                            <p><input type="checkbox"></input> 
-                            <label htmlFor="guarnicao5">Mandioca</label></p>
+                            <p><input type="radio"></input> 
+                            <label htmlFor="guarnicao5">MANDIOCA</label></p>
 
-                            <p><input type="checkbox"></input> 
-                            <label htmlFor="guarnicao6">Farofa</label></p>
+                            <p><input type="radio"></input> 
+                            <label htmlFor="guarnicao6">FAROFA</label></p>
                             
                         </div>
 
                         <div className="tamanho">
-                            <label htmlFor="tamanho">Tamanho:</label>
+                            <label htmlFor="tamanho">TAMANHO:</label>
                             <p>
                                 <input type="radio" name="tamanho"></input>
                                 <input type="radio" name="tamanho"></input>
@@ -65,38 +65,37 @@ export const Order: React.FC = () => {
                         </div>
 
                         <div className="mistura">
-                            <label htmlFor="mistura">Selecione as mistura:</label>
+                            <label htmlFor="mistura" className="titulo">Selecione a mistura:</label>
                             
                             <p>
-                            <label htmlFor="mistura2">Frango Parmegiana</label>
+                            <label htmlFor="mistura2">FRANGO PARMEGIANA</label>
                             <input type="radio" name="mistura"></input>
                             </p>
 
                             <p>
-                            <label htmlFor="mistura2">Moqueca de Peixe</label>
+                            <label htmlFor="mistura2">MOQUECA DE PEIXE</label>
                             <input type="radio" name="mistura"></input>
                             </p>
 
                             <p>
-                            <label htmlFor="mistura2">Feijoada</label>
+                            <label htmlFor="mistura2">FEIJOADA</label>
                             <input type="radio" name="mistura"></input>
                             </p>
 
                             <p>
-                            <label htmlFor="mistura2">Frango Grelhado</label>
+                            <label htmlFor="mistura2">FRANGO GRELHADO</label>
                             <input type="radio" name="mistura"></input>
                             </p>
 
                             <p>
-                            <label htmlFor="mistura2">Calabresa</label>
+                            <label htmlFor="mistura2">CALABRESA</label>
                             <input type="radio" name="mistura"></input>
                             </p>
 
                             <p>
-                            <label htmlFor="mistura2">Omelete</label>
+                            <label htmlFor="mistura2">OMELETE</label>
                             <input type="radio" name="mistura"></input>
                             </p>
-
                             
                         </div> 
                         

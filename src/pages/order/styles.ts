@@ -13,7 +13,7 @@ export const ModalContainer = styled.div`
 
 main{
     width: 100%;
-    height: 80%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 
@@ -36,6 +36,20 @@ main{
         
         
     }
+
+    .titulo{
+        margin-bottom: 30px;
+
+    }
+
+    input{
+        margin: 0.5rem 1rem ;
+        width: 25px;
+        height: 25px;
+
+        color: #FFA800;
+    }
+
     .topo{
         width: 1050px;
         height: 77px;
@@ -49,7 +63,6 @@ main{
         font-size: 48px;
 
         color: white;
-        
 
         background: #FF3030;
         box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
@@ -60,28 +73,87 @@ main{
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        padding: 0 2.5rem;
+
+        font-family: 'Fredoka One';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
 
     }
 
     .tamanho{
+        width: 275px;
+        height: 150px;
         display: flex;
         flex-direction: column;
-        padding: 0 6rem;
+        padding: 4rem 2rem;
         align-items: center;
+        margin-top: 200px;
+
+        font-family: 'Fredoka One';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        color: white;
+
+        background: #FFA800;
+        box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 50px;
+
+        input{
+            width: 25px;
+            height: 25px;
+        }
 
     }
 
     .mistura{
         display: flex;
         flex-direction: column;
-        align-items: flex-end; 
+        align-items: flex-end;
+        padding: 0 2.5rem;
+
+        font-family: 'Fredoka One';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+
+        
+
     }
 
     .botoes{
-        width: 25%;
+        width: 50%;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+
+        button{
+            width: 200px;
+            height: 50px;
+
+            font-family: 'Fredoka One';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+
+            border-radius: 50px;
+            
+        }
+        
+
+        .finalizar{
+            background: #FF0000;
+            box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+            color: white;
+        }
+
+        .agendar{
+            background: white;
+            color: #FFA800;
+            border: 3px solid #FFA800;
+        }
     }
 }
 
