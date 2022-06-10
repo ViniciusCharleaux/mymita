@@ -40,18 +40,30 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center ;
+        margin-bottom: 1rem;
       }
 
       input{
-        height: 3rem;
+        /* height: 3rem;
         width: 17rem;
         border-radius: 20px;
         box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
-        padding: 0 2rem ;
+        padding: 0 2rem ; */
+        height: 3rem;
+        width: 17rem;
+        border-radius: 20px;
+        box-shadow: 0px 3px rgba(0, 0, 0, 0.30);
+        background-color: whitesmoke;
+        color: rgba(0, 0, 0, 0.5);
+        font-family: 'fredoka one';
+        font-size: 12pt;
+        padding: 0 1rem ;
+        //margin: 0.5rem 0;
       }
 
       label{
         font-family: 'fredoka one';
+        font-size: 20px;
       }
 
       .button__login {
