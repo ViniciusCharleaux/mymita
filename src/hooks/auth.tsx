@@ -148,7 +148,6 @@ function AuthContextProvider(props: AuthContextProviderProps) {
 
 
       }else{
-        alert('login não encontrado, email ou senha errados')
         return false
       }
     

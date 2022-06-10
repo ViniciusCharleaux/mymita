@@ -87,7 +87,7 @@ export const Container = styled.div`
   main {
     display: flex;
     width: 80%;
-    heigth: 100%;
+    height: 100%;
     flex-direction: column;
 
     .header {
@@ -101,7 +101,7 @@ export const Container = styled.div`
     .center{
         display: flex;
         width: 100%;
-        height: 100%; 
+        height: 75%; 
         justify-content: space-evenly;
 
         .left{
@@ -109,6 +109,28 @@ export const Container = styled.div`
             height: 95%;
             background: linear-gradient(358deg, rgba(134, 123, 123, 0.14) 50.07%, rgba(196, 196, 196, 0) 129.46%);
             border-radius: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            max-height: 100%;
+
+            .historic-container{
+              width: 100%;
+              height: 90%;
+              overflow-y: auto;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              align-items: center;
+              margin-top: 1rem;
+            }
+
+        }
+
+        p{
+          font-size: 20px;
+          font-family: 'fredoka one';
         }
 
         .right{
@@ -116,6 +138,7 @@ export const Container = styled.div`
             height: 95%;
             background: linear-gradient(358deg, rgba(134, 123, 123, 0.14) 50.07%, rgba(196, 196, 196, 0) 129.46%);
             border-radius: 60px;
+            max-height: 100%;
         }
     }
   }
