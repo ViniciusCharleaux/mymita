@@ -46,10 +46,19 @@ export const buscaCardapio = async () => {
     //querySnapshot.forEach(QueryDocumentSnapshot=> console.log(QueryDocumentSnapshot.data()));
 }
 
-const apagaCardapio = async () => {
+export const apagaCardapio = async () => {
+    
     const ref = collection(firestore, "cardapios");
+
     const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
-    await deleteDoc(doc(ref, tempo));
+
+    const q = query(ref, where("data", "==", tempo));
+      
+    const querySnapshot = await getDocs(q); 
+
+    const referencia = querySnapshot.docs[0].id;
+
+    await deleteDoc(doc(ref, referencia));
 }
         
 
