@@ -37,7 +37,7 @@ export const cadastraPedido = async (Data:Pedido) => {
     }
 }
 
-export const buscaPedido = async () => {
+export const buscaPedido = async (): Promise<Pedido[]> => {
     const ref = collection(firestore, "pedidos");    
 
     const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
@@ -46,5 +46,15 @@ export const buscaPedido = async () => {
       
     const querySnapshot = await getDocs(q); 
 
-    //querySnapshot.forEach(QueryDocumentSnapshot=> console.log(QueryDocumentSnapshot.data()));
+    let P: Pedido[];
+
+    querySnapshot.forEach(QueryDocumentSnapshot=>{
+        const doc:Pedido = {
+            Guarnicao: QueryDocumentSnapshot.data().Guarnicao,
+            Mistura: QueryDocumentSnapshot.data().Mistura,
+            Salada: QueryDocumentSnapshot.data().Salada,
+        }
+
+        P.push(doc)
+    });
 }
