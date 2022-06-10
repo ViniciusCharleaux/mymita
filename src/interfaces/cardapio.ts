@@ -1,7 +1,8 @@
 import React, { createContext, useCallback, useState, useContext, ReactNode } from "react";
 import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
-import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, Timestamp, where } from 'firebase/firestore'
+import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, setDoc, Timestamp, where } from 'firebase/firestore'
+import { async } from "@firebase/util";
 
 export interface Cardapio{
     Guarnicao: string,
@@ -45,5 +46,10 @@ export const buscaCardapio = async () => {
     //querySnapshot.forEach(QueryDocumentSnapshot=> console.log(QueryDocumentSnapshot.data()));
 }
 
+const apagaCardapio = async () => {
+    const ref = collection(firestore, "cardapios");
+    const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
+    await deleteDoc(doc(ref, tempo));
+}
         
 
