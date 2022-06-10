@@ -43,65 +43,12 @@ const AuthContext = createContext({} as AuthContextType);
 
 
 function AuthContextProvider(props: AuthContextProviderProps) {
+  
   useEffect(() => {
     updateLogin()
   },[])
 
     const [user, setUser] = useState<User>();
-
-
-
-    // const signIn = useCallback(async (data: LoginData) => {
-
-
-    //     const refLogin = collection(firestore, 'usuarios');
-    //     const q = query(refLogin, where("email", "==", data.email), where("senha", "==", data.password));
-
-    //     const querySnapshot = await getDocs(q);      
-
-    //     let loginUser:User = {
-    //       Contato: '',
-    //       Endereco: '',
-    //       Key: '',
-    //       Nome: '',
-    //       Privilegio: '1',
-    //   }
-
-    //     querySnapshot.forEach(doc => {
-
-    //         console.log(doc.data());
-
-    //           loginUser = {
-    //             Contato: '',
-    //             Endereco: '',
-    //             Key: doc.id,
-    //             Nome: doc.data().nome,
-    //             Privilegio: '1',
-    //           }
-
-    //           setUser(loginUser)
-
-    //           loginUser.Key = md5(loginUser.Key)
-
-    //         console.log(loginUser)
-
-    //     });
-
-    //     if(loginUser.Key !== ''){
-    //       //mensagem de sucesso
-
-    //       // localStorage.setItem('@MyMita:token', );
-    //       localStorage.setItem('@MyMita:user', JSON.stringify(loginUser));
-
-    //       return true;
-
-
-    //     }else{
-    //       alert('login não encontrado, email ou senha errados')
-    //       return false
-    //     }
-      
-    //   }, []);
 
 
     const signIn = async (data: LoginData) => {
