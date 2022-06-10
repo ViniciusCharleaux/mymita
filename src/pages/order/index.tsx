@@ -10,6 +10,11 @@ export const Order: React.FC = () => {
 
     return (
 
+        <>
+        
+
+        <h1>ola</h1>
+
         <Modal
             isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(false)}
@@ -23,7 +28,7 @@ export const Order: React.FC = () => {
         >
             <ModalContainer>
                 <main>
-                    <div>
+                    <div className="topo">
                         PEDIDO
                     </div>
                     <div className="conteudo">                
@@ -110,6 +115,8 @@ export const Order: React.FC = () => {
             </ModalContainer>
 
         </Modal>
+
+        </>
 
         
     )

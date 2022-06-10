@@ -41,12 +41,17 @@ export const GlobalStyle = createGlobalStyle`
         align-items: center;
         justify-content: center;
     }
+    
     .react-modal-content {
         width: 100%;
         max-width: 576px;
         background: var(--color-white);
         position: relative;
         border-radius: 0.25rem;
+        border-radius: 50px;
+    }
+    .react-modal-content:focus {
+        outline: none;
     }
     .react-modal-close{
         position: absolute;
