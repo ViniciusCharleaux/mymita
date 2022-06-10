@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { OrderContainer } from "../../components/OrderContainer";
 import { EstadoPedido } from "../../components/EstadoPedido";
+import { PedidoAgenda } from "../../components/PedidoAgenda";
 
 export const Dashboard: React.FC = () => {
   const data = [
@@ -32,12 +33,10 @@ export const Dashboard: React.FC = () => {
   };
 
   const splitName = () => {
+    const firstName = user?.Nome.split(" ")[0];
 
-    const firstName = user?.Nome.split(' ')[0];
-
-
-    return firstName
-  }
+    return firstName;
+  };
 
   return (
     <Container>
@@ -59,15 +58,12 @@ export const Dashboard: React.FC = () => {
           <Header title1="cardápio" title2="contato"></Header>
         </div>
 
-        { true ? (
-
+        {false ? (
           <div className="estado-pedido">
             <EstadoPedido />
           </div>
-
         ) : null}
 
-        
         <div className="center">
           <div className="left">
             <p>histórico de pedidos</p>
@@ -81,7 +77,13 @@ export const Dashboard: React.FC = () => {
               ))}
             </div>
           </div>
-          <div className="right"></div>
+          <div className="right">
+            <p>agenda de pedidos</p>
+            <div className="agenda-container">
+              <PedidoAgenda />
+              <PedidoAgenda />
+            </div>
+          </div>
         </div>
       </main>
     </Container>
