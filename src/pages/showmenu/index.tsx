@@ -19,7 +19,9 @@ interface LoginData {
   password: string;
 }
 
-export const Home: React.FC = () => {
+
+// procurar remover depois porem pagina nao mostra sem. 
+export const ShowMenu: React.FC = () => {
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -56,56 +58,8 @@ export const Home: React.FC = () => {
         title2='contato'
       />
       <main>
-        <div className='main__login-container'>
-
-          <div className="main__input-container">
-            <label htmlFor="">email:</label>
-            <input 
-              type="text" 
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-
-          <div className="main__input-container">
-            <label htmlFor="">senha:</label>
-            <input 
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
         
-
-          <button
-            className='button__login'
-            onClick={handleLogin}
-          >
-            login
-            {loading && <MiniLoading/>}
-          </button>
-
-          <div className="main__social">
-            <button
-              className='button__social'
-            >
-              <FcGoogle
-                size={40}
-               />
-            </button>
-            <button
-              className='button__social'
-            >
-              <BsFacebook
-                size={40}
-              />
-            </button>
-          </div>
-
-          <a href="/cadastro">não possui uma conta ?</a>
-
-        </div>
-        <div className='main__image'>
-          <img src={images.mainImg} alt="main image" />
-        </div>
+        
       </main>
       <footer></footer>
     </Container>
