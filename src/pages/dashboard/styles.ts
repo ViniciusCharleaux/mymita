@@ -89,6 +89,7 @@ export const Container = styled.div`
     width: 80%;
     height: 100%;
     flex-direction: column;
+    align-items: center;
 
     .header {
       width: 100%;
@@ -96,6 +97,14 @@ export const Container = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .estado-pedido{
+      display: flex;
+      width: 85%;
+      height: 20rem;
+      margin: 1rem;
+      //align-items: center;
     }
 
     .center{
