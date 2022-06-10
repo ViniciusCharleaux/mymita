@@ -26,7 +26,7 @@ export const Home: React.FC = () => {
   const [loading, setLoading] = useState<Boolean>(false);
 
   const {signIn, user} = useAuth()
-  const {toastTopSuccess} = useToast()
+  const {toastTopSuccess, toastTopError} = useToast()
 
   const navigate = useNavigate()
 
@@ -34,19 +34,29 @@ export const Home: React.FC = () => {
 
     setLoading(true)
 
-    const res = await signIn({email, password})
+    if(email === '' && password === ''){
+      toastTopError("Campos vazios, preencha-os para fazer o login!")
+    }else if(email === ''){
+      toastTopError("Campo de email vazio, preencha por favor!")
+    }else if(password === ''){
+      toastTopError("Campo de senha vazio, preencha por favor")
+    }else{
+      const res = await signIn({email, password})
+  
+      if(res){
+        toastTopSuccess('Login bem sucedido')
+        
+        setTimeout(() => {
+          setLoading(false);
+          navigate('/dashboard')
+        },1000);
 
-    if(res){
-      toastTopSuccess('Login bem sucedido')
-      
-      setTimeout(() => {
-        setLoading(false);
-        navigate('/dashboard')
-      },1000);
-
-
+      }else{
+        toastTopError("Email ou senha errado, conta não encontrada!")
+      }
     }
 
+    setLoading(false);
   }
 
   return (

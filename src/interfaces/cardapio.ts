@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
 import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, Timestamp, where } from 'firebase/firestore'
 
-export interface Cardapio{
+interface cardapios{
     Guarnicao: string,
     Mistura: string,
     Salada: string
@@ -13,16 +13,20 @@ export interface Cardapio{
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore();
 
-export const cadastraCardapio = async (Data:Cardapio) => {
+export const cadastraPedido = async (Data:cardapios) => {
     const ref = collection(firestore, "cardapios");
 
 
     try {
-        await setDoc(doc(ref),{
+
+        const time = Timestamp.fromDate(new Date())
+
+        console.log(time)
+
+        await setDoc(doc(ref, Timestamp.fromDate(new Date()).toDate().toLocaleDateString('pt-br', {dateStyle: "long"})),{
             guarnicao: Data.Guarnicao,
             mistura: Data.Mistura,
-            salada: Data.Salada,
-            data: Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"})
+            salada: Data.Salada
         })
         
         return 1
@@ -33,16 +37,17 @@ export const cadastraCardapio = async (Data:Cardapio) => {
     }
 }
 
-export const buscaCardapio = async () => {
-    const ref = collection(firestore, "cardapios");
+export const buscaPedido = async (Data:cardapios) => {
+    const ref = collection(firestore, "pedidos");
 
     const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
 
-    const q = query(ref, where("data", "==", tempo));
+    const q = query(ref, where("[.key]", "==", tempo));
       
     const querySnapshot = await getDocs(q); 
 
-    querySnapshot.forEach(QueryDocumentSnapshot=> console.log(QueryDocumentSnapshot.data()));
+    console.log(querySnapshot)
+
 }
 
         

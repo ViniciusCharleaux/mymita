@@ -28,12 +28,20 @@ export const Dashboard: React.FC = () => {
     navigate("/");
   };
 
+  const splitName = () => {
+
+    const firstName = user?.Nome.split(' ')[0];
+
+
+    return firstName
+  }
+
   return (
     <Container>
       <aside>
         <div className="user__container">
           <img src={images.noUserImage} alt="user img" />
-          <h1>{user?.Nome}</h1>
+          <h1>{splitName()}</h1>
         </div>
 
         <div className="buttons__containers">
