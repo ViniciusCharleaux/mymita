@@ -60,6 +60,8 @@ export const ShowMenu: React.FC = () => {
       <main>
         <div className='menu__container'>
 
+          <div className="topo">CARDÁPIO - 13/04</div>
+
           <div className="center">
             <div className="left">
               <p>Guarnição</p>
@@ -75,20 +77,22 @@ export const ShowMenu: React.FC = () => {
             <div className="right">
               <p>Mistura</p>
               <div className="mistura-container">
-              <a>FRANGO PARMEGIANA</a>
-              <a>MOQUECA DE PEIXE</a>
-              <a>FEIJOADA</a>
-              <a>FRANGO GRELHADO</a>
-              <a>CALABRESA</a>
-              <a>OMELETE</a>
+                <a>FRANGO PARMEGIANA</a>
+                <a>MOQUECA DE PEIXE</a>
+                <a>FEIJOADA</a>
+                <a>FRANGO GRELHADO</a>
+                <a>CALABRESA</a>
+                <a>OMELETE</a>
               </div>
             </div>
           </div>
 
-          <div className="fazer_pedido">
-            <button type="button">fazer pedido</button>
-          </div>
 
+
+        </div>
+
+        <div className="fazer_pedido">
+          <button type="button">fazer pedido</button>
         </div>
 
       </main>

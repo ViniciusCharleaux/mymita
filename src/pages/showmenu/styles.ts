@@ -9,26 +9,43 @@ export const Container = styled.div`
   align-items: center;
   background: linear-gradient(180deg, rgba(255, 168, 0, 0.5) -23.56%, rgba(255, 255, 255, 0.5) 28.03%);
 
-  .fazer_pedido {
-    width: 17rem;
-    height: 4.5rem;
-    background-color: var(--color-red);
-    border-radius: 40px;
-    color: var(--color-white);
-    font-size: 2.5rem;
-    transition: 0.3s box-shadow ease-in;
-    font-family: 'fredoka one';
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+
+  .topo{
+    width: 1050px;
+    height: 77px;
+    left: 71px;
+    top: 35px;
+    text-align: center;
     align-items: center;
+    font-family: 'Fredoka One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+    color: white;
+    background: #FFA800;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    justify-content: center;
+    display: flex;
+}
+
+  .fazer_pedido {
+    width: 280px;
+    height: 67px;
+    left: 1227px;
+    top: 779px;
+    background: #FF3030;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    font-family: 'Fredoka One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    justify-content: center;
     
   }
-
-
-
-
-
 
   .center {
     display: flex;
@@ -107,6 +124,7 @@ export const Container = styled.div`
         justify-content: flex-start;
         flex-direction: row;
         margin-top: 1rem;
+        
       }
     }
     
