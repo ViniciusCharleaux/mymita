@@ -60,18 +60,33 @@ export const ShowMenu: React.FC = () => {
       <main>
         <div className='menu__container'>
 
-          <div>
-            <h2>Guarnição</h2>
-            Arroz
-            Feijão
-            Nhoque
-            Batata Sautee
-            Mandioca
-            Farofa
-
+          <div className="center">
+            <div className="left">
+              <p>Guarnição</p>
+              <div className="historic-container">
+                <p>ARROZ</p>
+                <p>FEIJÃO</p>
+                <p>NHOQUE</p>
+                <p>BATATA SAUTEE</p>
+                <p>MANDIOCA</p>
+                <p>FAROFA</p>
+              </div>
+            </div>
+            <div className="right">
+              <p>Mistura</p>
+              <div className="agenda-container">
+              <p>FRANGO PARMEGIANA</p>
+              <p>MOQUECA DE PEIXE</p>
+              <p>FEIJOADA</p>
+              <p>FRANGO GRELHADO</p>
+              <p>CALABRESA</p>
+              <p>OMELETE</p>
+                
+              </div>
+            </div>
           </div>
 
-          
+
 
         </div>
 
