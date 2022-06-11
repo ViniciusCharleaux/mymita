@@ -17,12 +17,11 @@ export const Routes: React.FC = () => {
       return(
         <BrowserRouter>
           <AppRoutes/>
-        
         </BrowserRouter>
       )
     }else{
 
-      if(user.Privilegio === "0"){
+      if(user.Privilegio === "1"){
         return (
           <BrowserRouter>
             <AuthRoutes/>

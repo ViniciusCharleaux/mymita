@@ -75,7 +75,7 @@ function AuthContextProvider(props: AuthContextProviderProps) {
               Endereco: '',
               Key: doc.id,
               Nome: doc.data().nome,
-              Privilegio: '1',
+              Privilegio: doc.data().privilegio || '1',
             }
 
             setUser(loginUser)
@@ -144,7 +144,8 @@ function AuthContextProvider(props: AuthContextProviderProps) {
               nome: Data.Nome,    
               senha: Data.Senha,
               contato: Data.Contato,
-              email: Data.Email
+              email: Data.Email,
+              privilegio: Data.Privilegio,
             })
         
             await signIn({email: Data.Email, password: Data.Senha})
