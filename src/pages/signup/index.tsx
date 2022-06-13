@@ -78,6 +78,7 @@ export const Signup: React.FC = () => {
                         title1='cardápio'
                         title2='contato'
                     />
+                    <form onClick={(e) => e.preventDefault()}>
                     <div className="main__input-container">
                         <label htmlFor="">nome:</label>
                         <input
@@ -116,14 +117,15 @@ export const Signup: React.FC = () => {
 
                     <div className="main__buttons-container">
                         <button
+                            type='submit'
                             className='button__signup'
                             onClick={handleSignUp}
-                        >
+                            >
                             cadastrar
                         </button>
-
                         <a href="/" className = "button__cancel">cancelar</a>
                     </div>
+                    </form>
                 </div>
             </main>
             <footer></footer>
