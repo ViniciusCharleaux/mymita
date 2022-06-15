@@ -80,30 +80,80 @@ main{
         font-weight: 400;
         font-size: 26px;
 
+        .checkbox-round{
+            width: 2.5em;
+            height: 2.5em;
+            background-color: white;
+            border-radius: 50%;
+            vertical-align: middle;
+            border: 4px solid #FFA800;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .checkbox-round:checked{
+            background-color: #FFA800;
+            
+        }
+
     }
 
     .tamanho{
-        width: 275px;
-        height: 150px;
+        width: 300px;
+        height: 500px;
         display: flex;
         flex-direction: column;
         padding: 4rem 2rem;
         align-items: center;
-        margin-top: 200px;
 
-        font-family: 'Fredoka One';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 26px;
-        color: white;
+        .pedido_image{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-        background: #FFA800;
-        box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-        border-radius: 50px;
+            img{
+                width: 331.45px;
+                height: 238.56px;
+            }
+           
+        }
+        
+        .tamanho-conteudo{
+            width: 300px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 2rem;
+            align-items: center;
+            font-family: 'Fredoka One';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 26px;
+            color: white;
 
-        input{
-            width: 25px;
-            height: 25px;
+            background: #FFA800;
+            box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+        }
+        
+
+        .radio-tamanho{
+            width: 3em;
+            height: 3em;
+            border-radius: 20%;
+            background-color: white;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .radio-tamanho:checked{
+            background-color: #FF0000;
         }
 
     }
@@ -119,7 +169,23 @@ main{
         font-weight: 400;
         font-size: 26px;
 
-        
+        .radio-mistura{
+            width: 2.5em;
+            height: 2.5em;
+            background-color: white;
+            border-radius: 50%;
+            vertical-align: middle;
+            border: 4px solid #FFA800;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .radio-mistura:checked{
+            background-color: #FFA800;
+            
+        }
 
     }
 
