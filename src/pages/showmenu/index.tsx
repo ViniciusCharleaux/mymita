@@ -58,7 +58,6 @@ export const ShowMenu: React.FC = () => {
         title2='contato'
       />
       <main>
-        <div className='menu__container'>
 
           <div className="topo">CARDÁPIO - 13/04</div>
 
@@ -86,17 +85,14 @@ export const ShowMenu: React.FC = () => {
               </div>
             </div>
           </div>
-
-
-
-        </div>
-
-        <div className="fazer_pedido">
-          <button type="button">fazer pedido</button>
-        </div>
-
+          <div className="fazer_pedido">
+            <button type="button">fazer pedido</button>
+          </div>
       </main>
-      <footer></footer>
+
+      
+      <img src={images.fritas} alt="batata frita" className='fritas'/>
+
     </Container>
   )
 }
