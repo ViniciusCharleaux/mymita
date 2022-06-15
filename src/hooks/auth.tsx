@@ -5,6 +5,7 @@ import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } 
 import md5 from 'md5';
 
 import { CreateUserData } from '../interfaces/user'
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType { 
     user: User | undefined;
@@ -42,7 +43,6 @@ const AuthContext = createContext({} as AuthContextType);
 
 
 function AuthContextProvider(props: AuthContextProviderProps) {
-
   useEffect(() => {
     updateLogin()
   },[])
@@ -51,57 +51,107 @@ function AuthContextProvider(props: AuthContextProviderProps) {
 
 
 
-    const signIn = useCallback(async (data: LoginData) => {
+    // const signIn = useCallback(async (data: LoginData) => {
 
 
-        const refLogin = collection(firestore, 'usuarios');
-        const q = query(refLogin, where("email", "==", data.email), where("senha", "==", data.password));
+    //     const refLogin = collection(firestore, 'usuarios');
+    //     const q = query(refLogin, where("email", "==", data.email), where("senha", "==", data.password));
+
+    //     const querySnapshot = await getDocs(q);      
+
+    //     let loginUser:User = {
+    //       Contato: '',
+    //       Endereco: '',
+    //       Key: '',
+    //       Nome: '',
+    //       Privilegio: '1',
+    //   }
+
+    //     querySnapshot.forEach(doc => {
+
+    //         console.log(doc.data());
+
+    //           loginUser = {
+    //             Contato: '',
+    //             Endereco: '',
+    //             Key: doc.id,
+    //             Nome: doc.data().nome,
+    //             Privilegio: '1',
+    //           }
+
+    //           setUser(loginUser)
+
+    //           loginUser.Key = md5(loginUser.Key)
+
+    //         console.log(loginUser)
+
+    //     });
+
+    //     if(loginUser.Key !== ''){
+    //       //mensagem de sucesso
+
+    //       // localStorage.setItem('@MyMita:token', );
+    //       localStorage.setItem('@MyMita:user', JSON.stringify(loginUser));
+
+    //       return true;
+
+
+    //     }else{
+    //       alert('login não encontrado, email ou senha errados')
+    //       return false
+    //     }
       
-        const querySnapshot = await getDocs(q);      
+    //   }, []);
 
-        let loginUser:User = {
-          Contato: '',
-          Endereco: '',
-          Key: '',
-          Nome: '',
-          Privilegio: '1',
+
+    const signIn = async (data: LoginData) => {
+
+      const refLogin = collection(firestore, 'usuarios');
+      const q = query(refLogin, where("email", "==", data.email), where("senha", "==", data.password));
+
+      const querySnapshot = await getDocs(q);      
+
+      let loginUser:User = {
+        Contato: '',
+        Endereco: '',
+        Key: '',
+        Nome: '',
+        Privilegio: '1',
+    }
+
+      querySnapshot.forEach(doc => {
+
+          console.log(doc.data());
+
+            loginUser = {
+              Contato: '',
+              Endereco: '',
+              Key: doc.id,
+              Nome: doc.data().nome,
+              Privilegio: '1',
+            }
+
+            setUser(loginUser)
+
+            loginUser.Key = md5(loginUser.Key)
+
+          console.log(loginUser)
+
+      });
+
+      if(loginUser.Key !== ''){
+        //mensagem de sucesso
+
+        // localStorage.setItem('@MyMita:token', );
+        localStorage.setItem('@MyMita:user', JSON.stringify(loginUser));
+        return true;
+
+
+      }else{
+        return false
       }
-
-        querySnapshot.forEach(doc => {
-
-            console.log(doc.data());
-
-              loginUser = {
-                Contato: '',
-                Endereco: '',
-                Key: doc.id,
-                Nome: doc.data().nome,
-                Privilegio: '1',
-              }
-
-              setUser(loginUser)
-
-              loginUser.Key = md5(loginUser.Key)
-
-            console.log(loginUser)
-
-        });
-
-        if(loginUser.Key !== ''){
-          //mensagem de sucesso
-
-          // localStorage.setItem('@Portal:token', );
-          localStorage.setItem('@MyMita:user', JSON.stringify(loginUser));
-
-          return true;
-
-
-        }else{
-          alert('login não encontrado, email ou senha errados')
-          return false
-        }
-      
-      }, []);
+    
+    };
 
 
       const updateLogin = (() => {
@@ -118,6 +168,8 @@ function AuthContextProvider(props: AuthContextProviderProps) {
       const logOut = useCallback(() => {
 
         localStorage.removeItem('@MyMita:user');
+
+        setUser(undefined)
 
         return true
 
