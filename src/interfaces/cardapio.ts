@@ -10,6 +10,12 @@ export interface Cardapio{
     Salada: string
 }
 
+interface Cardapios{
+    Guarnicao: string,
+    Mistura: string,
+    Salada: string,
+    Data: Date
+}
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore();
@@ -34,7 +40,10 @@ export const cadastraCardapio = async (Data:Cardapio) => {
     }
 }
 
-export const buscaCardapio = async () => {
+export const buscaCardapio = async (): Promise<Cardapios[]> => {
+
+    const C: Cardapios[] = [];
+
     const ref = collection(firestore, "cardapios");
 
     const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
@@ -44,6 +53,24 @@ export const buscaCardapio = async () => {
     const querySnapshot = await getDocs(q); 
 
     //querySnapshot.forEach(QueryDocumentSnapshot=> console.log(QueryDocumentSnapshot.data()));
+
+    querySnapshot.forEach(QueryDocumentSnapshot=>{
+        
+        //console.log(QueryDocumentSnapshot.data());
+        
+        const docC:Cardapios = {
+            Guarnicao: QueryDocumentSnapshot.get("guarnicao"),
+            Mistura: QueryDocumentSnapshot.get("mistura"),
+            Salada: QueryDocumentSnapshot.get("salada"),
+            Data: QueryDocumentSnapshot.get("data")         
+        };
+
+        //console.log(docC);
+
+        C.push(docC);
+    });
+
+    return C;
 }
 
 export const apagaCardapio = async () => {
@@ -60,5 +87,3 @@ export const apagaCardapio = async () => {
 
     await deleteDoc(doc(ref, referencia));
 }
-        
-

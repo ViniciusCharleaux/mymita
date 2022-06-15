@@ -8,9 +8,19 @@ export interface Pedido{
     Mistura: string,
     Salada: string,
     Tamanho: string,
-    Valor: string   
+    Valor: string,
+    Arquivado: number   
 }
 
+interface Pedidos{
+    Guarnicao: string,
+    Mistura: string,
+    Salada: string,
+    Tamanho: string,
+    Valor: string,
+    Arquivado: number,
+    Data: Date   
+}
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore();
@@ -26,7 +36,8 @@ export const cadastraPedido = async (Data:Pedido) => {
             salada: Data.Salada,
             tamanho: Data.Tamanho,
             valor: Data.Valor,
-            data: Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"})
+            data: Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"}),
+            arquivado: 0
         })
         
         return 1
@@ -37,8 +48,8 @@ export const cadastraPedido = async (Data:Pedido) => {
     }
 }
 
-export const buscaPedido = async (): Promise<Pedido[]> => {
-    const P: Pedido[] = [];
+export const buscaPedido = async (): Promise<Pedidos[]> => {
+    const P: Pedidos[] = [];
     
     const ref = collection(firestore, "pedidos");    
 
@@ -48,18 +59,28 @@ export const buscaPedido = async (): Promise<Pedido[]> => {
       
     const querySnapshot = await getDocs(q); 
 
+    //console.log(querySnapshot);
 
     querySnapshot.forEach(QueryDocumentSnapshot=>{
-        const docP:Pedido = {
-            Guarnicao: QueryDocumentSnapshot.data().Guarnicao,
-            Mistura: QueryDocumentSnapshot.data().Mistura,
-            Salada: QueryDocumentSnapshot.data().Salada,
-            Tamanho: QueryDocumentSnapshot.data().Tamanho,
-            Valor: QueryDocumentSnapshot.data().Valor
-        }
+        
+        //console.log(QueryDocumentSnapshot.data());
+        
+        const docP:Pedidos = {
+            Guarnicao: QueryDocumentSnapshot.get("guarnicao"),
+            Mistura: QueryDocumentSnapshot.get("mistura"),
+            Salada: QueryDocumentSnapshot.get("salada"),
+            Tamanho: QueryDocumentSnapshot.get("tamanho"),
+            Valor: QueryDocumentSnapshot.get("valor"),
+            Arquivado: QueryDocumentSnapshot.get("arquivado"),
+            Data: QueryDocumentSnapshot.get("data")
+        };
 
-        P.push(docP)
+        //console.log(docP);
+
+        P.push(docP);
     });
+
+    console.log(P);
 
     return P;
 }
