@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useState, useContext, ReactNode } from "react";
 import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
-import { collection, doc, getDoc, getDocs, getFirestore, query, QueryDocumentSnapshot, setDoc, Timestamp, where } from 'firebase/firestore'
+import { collection, doc, Firestore, getDoc, getDocs, getFirestore, query, QueryDocumentSnapshot, setDoc, Timestamp, updateDoc, where } from 'firebase/firestore'
 
 export interface Pedido{
     Guarnicao: string,
@@ -9,7 +9,8 @@ export interface Pedido{
     Salada: string,
     Tamanho: string,
     Valor: string,
-    Arquivado: number   
+    Arquivado: number,
+    Email: string
 }
 
 interface Pedidos{
@@ -19,7 +20,9 @@ interface Pedidos{
     Tamanho: string,
     Valor: string,
     Arquivado: number,
-    Data: Date   
+    Data: Date,
+    Email: string,
+    Chave: string
 }
 
 const app = initializeApp(firebaseConfig);
@@ -37,7 +40,8 @@ export const cadastraPedido = async (Data:Pedido) => {
             tamanho: Data.Tamanho,
             valor: Data.Valor,
             data: Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"}),
-            arquivado: 0
+            arquivado: 0,
+            email: Data.Email
         })
         
         return 1
@@ -65,14 +69,16 @@ export const buscaPedido = async (): Promise<Pedidos[]> => {
         
         //console.log(QueryDocumentSnapshot.data());
         
-        const docP:Pedidos = {
+        const docP:Pedidos = {            
             Guarnicao: QueryDocumentSnapshot.get("guarnicao"),
             Mistura: QueryDocumentSnapshot.get("mistura"),
             Salada: QueryDocumentSnapshot.get("salada"),
             Tamanho: QueryDocumentSnapshot.get("tamanho"),
             Valor: QueryDocumentSnapshot.get("valor"),
             Arquivado: QueryDocumentSnapshot.get("arquivado"),
-            Data: QueryDocumentSnapshot.get("data")
+            Data: QueryDocumentSnapshot.get("data"),
+            Email: QueryDocumentSnapshot.get("email"),
+            Chave: QueryDocumentSnapshot.get("[.key]")
         };
 
         //console.log(docP);
@@ -83,4 +89,20 @@ export const buscaPedido = async (): Promise<Pedidos[]> => {
     console.log(P);
 
     return P;
+}
+
+export const arquivaPedido = async (Chave:string) => {
+    const ref = doc(firestore, "pedidos", Chave);    
+
+    await updateDoc(ref, {
+        arquivado: 1
+    });
+}
+
+export const aceitaPedido = async (Chave:string) => {
+    const ref = doc(firestore, "pedidos", Chave);    
+
+    await updateDoc(ref, {
+        arquivado: 2
+    });
 }
