@@ -24,17 +24,23 @@ export const Container = styled.div`
     font-size: 25px;
   }
   .center {
-    width: 100%;
+    width: 80rem;
     height: 80%;
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center;
+    //align-items: center;
 
     .barra {
       width: 80rem;
-      height: 0.5rem;
+      height: 0.35rem;
       background: #c4c4c4;
       border-radius: 30px;
+    }
+
+    .varias-comandas{
+      display: flex;
+      flex-direction: row;
     }
   }
 `;

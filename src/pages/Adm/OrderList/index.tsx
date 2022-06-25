@@ -12,7 +12,11 @@ export const OrderList: React.FC = () => {
       <br></br>
       <div className="center">
         <div className="barra"></div>
-        <Comanda />
+        <div className="varias-comandas">
+          <Comanda />
+          <Comanda />
+          <Comanda />
+        </div>
       </div>
     </Container>
   );
