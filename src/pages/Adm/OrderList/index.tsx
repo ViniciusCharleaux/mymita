@@ -5,11 +5,14 @@ import { Header } from "../../../components/Header";
 export const OrderList: React.FC = () => {
   return (
     <Container>
-        <Header title1="cardápio" title2="contato"></Header>
+      <Header title1="cardápio" title2="contato"></Header>
+      <div className="ped">
+        <p>pedidos:</p>
+      </div>
+      <br></br>
       <div className="center">
-        <div className="barra">
-          <Comanda/>
-        </div>
+        <div className="barra"></div>
+        <Comanda />
       </div>
     </Container>
   );
