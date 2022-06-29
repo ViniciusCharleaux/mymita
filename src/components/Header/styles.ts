@@ -9,5 +9,14 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     font-family: 'fredoka one';
+
+    a{
+        color: black;
+    }
+    
+    a:hover{
+        color: black;
+        text-decoration: underline;
+    }
     
 `

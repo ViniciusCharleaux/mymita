@@ -13,15 +13,20 @@ interface cardapios{
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore();
 
-const cadastraPedido = async (Data:cardapios) => {
+export const cadastraPedido = async (Data:cardapios) => {
     const ref = collection(firestore, "cardapios");
 
 
     try {
-        await setDoc(doc(ref, (Timestamp.fromDate(new Date()).toString())),{
+
+        const time = Timestamp.fromDate(new Date())
+
+        console.log(time)
+
+        await setDoc(doc(ref, Timestamp.fromDate(new Date()).toDate().toLocaleDateString('pt-br', {dateStyle: "long"})),{
             guarnicao: Data.Guarnicao,
             mistura: Data.Mistura,
-            salada: Data.Mistura
+            salada: Data.Salada
         })
         
         return 1
@@ -32,7 +37,7 @@ const cadastraPedido = async (Data:cardapios) => {
     }
 }
 
-const buscaPedido = async (Data:cardapios) => {
+export const buscaPedido = async (Data:cardapios) => {
     const ref = collection(firestore, "pedidos");
 
     const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
@@ -40,6 +45,8 @@ const buscaPedido = async (Data:cardapios) => {
     const q = query(ref, where("[.key]", "==", tempo));
       
     const querySnapshot = await getDocs(q); 
+
+    console.log(querySnapshot)
 
 }
 
