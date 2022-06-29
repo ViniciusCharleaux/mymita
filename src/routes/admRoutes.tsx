@@ -1,15 +1,13 @@
-
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import {Dashboard} from '../pages/dashboard'
-import { Signup } from '../pages/signup';
+import { OrderList } from '../pages/Adm/OrderList';
 
-export const AuthRoutes: React.FC = () => {
+export const AdmRoutes: React.FC = () => {
   return (
       <Routes>
-        <Route path="/cadastro" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<OrderList />} />
         {/* <Route path="/" element={<Home />} /> */}
         <Route
             path="*"
