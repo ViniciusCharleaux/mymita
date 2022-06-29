@@ -18,6 +18,9 @@ export const OrderList: React.FC = () => {
           <Comanda />
         </div>
       </div>
+      
+        <button><div className="btn-sair-adm">sair</div></button>
+      <br></br>
     </Container>
   );
 };

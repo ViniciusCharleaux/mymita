@@ -42,5 +42,18 @@ export const Container = styled.div`
       display: flex;
       flex-direction: row;
     }
+    
+  }
+  .btn-sair-adm{
+    height: 3rem;
+    width: 7rem;
+    background-color: #ffa800;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'fredoka one';
+    font-size: 25px;
+    color: white;
   }
 `;
