@@ -4,6 +4,7 @@ import { Dashboard } from '../pages/dashboard';
 
 import {Home} from '../pages/home'
 import {Signup} from '../pages/signup'
+import {Order} from '../pages/order'
 import {ShowMenu} from '../pages/showmenu'
 import {ShowContact} from '../pages/contact'
 
