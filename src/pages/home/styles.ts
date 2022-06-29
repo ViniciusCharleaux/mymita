@@ -27,7 +27,7 @@ export const Container = styled.div`
       align-items: center;
       padding: 1rem;
       justify-content: space-around;
-      background-color: rgba(134, 123, 123, 0.14);
+      background: linear-gradient(336.98deg, rgba(196, 196, 196, 0.3) 50.05%, rgba(255, 255, 255, 0.3) 118.16%);
       border-radius: 70px;
 
       a{
@@ -40,18 +40,30 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center ;
+        margin-bottom: 1rem;
       }
 
       input{
-        height: 3rem;
+        /* height: 3rem;
         width: 17rem;
         border-radius: 20px;
         box-shadow: 10px 5px 25px rgba(0, 0, 0, 0.25);
-        padding: 0 2rem ;
+        padding: 0 2rem ; */
+        height: 3rem;
+        width: 17rem;
+        border-radius: 20px;
+        box-shadow: 0px 3px rgba(0, 0, 0, 0.30);
+        background-color: #E4E4E4;
+        color: rgba(0, 0, 0, 0.5);
+        font-family: 'fredoka one';
+        font-size: 12pt;
+        padding: 0 1rem ;
+        //margin: 0.5rem 0;
       }
 
       label{
         font-family: 'fredoka one';
+        font-size: 20px;
       }
 
       .button__login {

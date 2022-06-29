@@ -89,6 +89,7 @@ export const Container = styled.div`
     width: 80%;
     height: 100%;
     flex-direction: column;
+    align-items: center;
 
     .header {
       width: 100%;
@@ -98,48 +99,77 @@ export const Container = styled.div`
       align-items: center;
     }
 
-    .center{
+    .estado-pedido {
+      display: flex;
+      width: 85%;
+      height: 20rem;
+      margin: 1rem;
+      //align-items: center;
+    }
+
+    .center {
+      display: flex;
+      width: 100%;
+      height: 75%;
+      justify-content: space-evenly;
+
+      .left {
+        width: 40%;
+        height: 95%;
+        background: linear-gradient(
+          358deg,
+          rgba(134, 123, 123, 0.14) 50.07%,
+          rgba(196, 196, 196, 0) 129.46%
+        );
+        border-radius: 60px;
         display: flex;
-        width: 100%;
-        height: 75%; 
-        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        max-height: 100%;
 
-        .left{
-            width: 40%;
-            height: 95%;
-            background: linear-gradient(358deg, rgba(134, 123, 123, 0.14) 50.07%, rgba(196, 196, 196, 0) 129.46%);
-            border-radius: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            max-height: 100%;
-
-            .historic-container{
-              width: 100%;
-              height: 90%;
-              overflow-y: auto;
-              display: flex;
-              flex-direction: column;
-              justify-content: flex-start;
-              align-items: center;
-              margin-top: 1rem;
-            }
-
+        .historic-container {
+          width: 100%;
+          height: 90%;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          margin-top: 1rem;
         }
+      }
 
-        p{
-          font-size: 20px;
-          font-family: 'fredoka one';
-        }
+      p {
+        font-size: 20px;
+        font-family: "fredoka one";
+      }
 
-        .right{
-            width: 40%;
-            height: 95%;
-            background: linear-gradient(358deg, rgba(134, 123, 123, 0.14) 50.07%, rgba(196, 196, 196, 0) 129.46%);
-            border-radius: 60px;
-            max-height: 100%;
+      .right {
+        width: 40%;
+        height: 95%;
+        background: linear-gradient(
+          358deg,
+          rgba(134, 123, 123, 0.14) 50.07%,
+          rgba(196, 196, 196, 0) 129.46%
+        );
+        border-radius: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        max-height: 100%;
+
+        .agenda-container {
+          width: 100%;
+          height: 90%;
+          overflow-y: auto;
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: row;
+          margin-top: 1rem;
         }
+      }
     }
   }
 `;
