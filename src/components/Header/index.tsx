@@ -13,7 +13,7 @@ export const Header: React.FC<HeaderProps> = ({title1, title2}) => {
 
             <Link to="/menu"><h2>{title1}</h2></Link>
             <Link to="/"> <img src={images.MyMitaLogo} alt="logo" /></Link>
-            <Link to="/"><h2>{title2}</h2></Link>
+            <Link to="/contact"><h2>{title2}</h2></Link>
 
         </Container>
     )
