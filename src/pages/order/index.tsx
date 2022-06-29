@@ -3,22 +3,21 @@ import Modal from 'react-modal';
 import images from "../../constants/images";
 import { Container, ModalContainer } from './styles';
 
-export const Order: React.FC = () => {
+interface OrderProps{
+    isOpen: boolean;
+    onRequestClose: () => void; 
+}
 
-    const [isModalOpen, setIsModalOpen] = useState(true);
-
+export const Order: React.FC<OrderProps> = ({isOpen, onRequestClose}) => {
 
 
     return (
 
         <>
 
-
-            <h1>ola</h1>
-
             <Modal
-                isOpen={isModalOpen}
-                onRequestClose={() => setIsModalOpen(false)}
+                isOpen={isOpen}
+                onRequestClose={onRequestClose}
                 overlayClassName="react-modal-overlay"
                 className="react-modal-content"
                 style={{

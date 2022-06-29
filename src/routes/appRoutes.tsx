@@ -13,7 +13,6 @@ export const AppRoutes: React.FC = () => {
         <Route path="/cadastro" element={<Signup />} />
         <Route path="/menu" element={<ShowMenu />} />
         <Route path="/" element={<Home />} />
-        <Route path="/pedido" element={<Order />} />
 
         <Route
             path="*"
