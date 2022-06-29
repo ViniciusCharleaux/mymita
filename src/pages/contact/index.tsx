@@ -1,8 +1,8 @@
-import { Container } from './styles';
+import { Container } from './styles'
 import { Header } from '../../components/Header'
 import { FcGoogle } from 'react-icons/fc'
 import { BsFacebook } from 'react-icons/bs'
-import { images } from '../../constants';
+import { images } from '../../constants'
 import { useState } from 'react';
 
 import { MiniLoading } from '../../components/Loading';
