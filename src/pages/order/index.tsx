@@ -112,8 +112,8 @@ export const Order: React.FC<OrderProps> = ({isOpen, onRequestClose}) => {
                                 agendar
                             </button>
                             <button
-                                className='avancar'>
-                                avançar
+                                className='finalizar'>
+                                finalizar
                             </button>
                         </div>
                     </main>
