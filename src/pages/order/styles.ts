@@ -215,7 +215,7 @@ main{
             color: white;
         }
 
-        .agendar{
+        .cancelar{
             background: white;
             color: #FFA800;
             border: 3px solid #FFA800;

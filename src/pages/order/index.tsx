@@ -2,14 +2,16 @@ import { useState } from "react";
 import Modal from 'react-modal';
 import images from "../../constants/images";
 import { Container, ModalContainer } from './styles';
+import { Payment } from '../payment';
 
-interface OrderProps{
+interface OrderProps {
     isOpen: boolean;
-    onRequestClose: () => void; 
+    onRequestClose: () => void;
 }
 
-export const Order: React.FC<OrderProps> = ({isOpen, onRequestClose}) => {
+export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose }) => {
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
 
@@ -108,15 +110,20 @@ export const Order: React.FC<OrderProps> = ({isOpen, onRequestClose}) => {
                         </div>
                         <div className="botoes">
                             <button
-                                className='agendar'>
-                                agendar
+                                className='cancelar' onClick={() => onRequestClose()}>
+                                cancelar
                             </button>
                             <button
-                                className='avancar'>
-                                avançar
+                                className='avancar' onClick={() => setIsModalOpen(true)}>
+                                avançar &gt;
                             </button>
                         </div>
                     </main>
+
+                    <Payment
+                        isOpen={isModalOpen}
+                        onRequestClose={() => setIsModalOpen(false)}
+                    />
                 </ModalContainer>
 
             </Modal>
