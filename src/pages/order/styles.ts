@@ -209,7 +209,7 @@ main{
         }
         
 
-        .finalizar{
+        .avancar{
             background: #FF0000;
             box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
             color: white;
