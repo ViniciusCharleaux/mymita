@@ -10,6 +10,11 @@ export const Container = styled.div`
     justify-content: space-between;
     font-family: 'fredoka one';
 
+    h2{
+        font-size: 25px !important;
+        text-transform: lowercase;
+    }
+
     a{
         color: black;
     }

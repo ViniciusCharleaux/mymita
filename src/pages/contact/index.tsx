@@ -43,9 +43,6 @@ export const ShowContact: React.FC = () => {
               
             </div>
           </div>
-          <div className="fazer_pedido">
-            <button type="button">fazer pedido</button>
-          </div>
       </main>
 
       
