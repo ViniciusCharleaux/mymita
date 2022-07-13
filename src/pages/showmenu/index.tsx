@@ -51,6 +51,20 @@ export const ShowMenu: React.FC = () => {
                 <a>FAROFA</a>
                 <a>OMELETE</a>
               </div>
+              
+            </div>
+            <div className="right">
+              <p>Mistura</p>
+                            
+              <div className="mistura-container">
+              <a>FRANGO PARMEGIANA</a>
+              <a>MOQUECA DE PEIXE</a>
+              <a>FEIJOADA</a>
+              <a>FRANGO GRELHADO</a>
+              <a>CALABRESA</a>
+              <a>OMELETE</a>
+              <a>PORCO</a>
+              </div>
             </div>
           </div>
           <div className="fazer_pedido">
