@@ -25,9 +25,10 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose }) => {
         }}
       >
         <ModalContainer>
+          
           <main>
-            <div className="img-pacote">
-              {/* <img src={images.bag}></img> */}
+          <div className="img-pacote">
+              <img src={images.bag}></img>
             </div>
             <div className="conteudo">
               <div className="titulo">Selecione a forma de pagamento:</div>

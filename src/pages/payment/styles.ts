@@ -6,7 +6,7 @@ export const ModalContainer = styled.div`
   width: 100%;
   height: 700px;
   border-radius: 50px;
-  padding: 2rem;
+  /* padding: 2rem; */
 
   main {
     width: 100%;
@@ -19,17 +19,17 @@ export const ModalContainer = styled.div`
     border-radius: 50px;
 
     .img-pacote {
-      margin: -20px;
-      display: flex;
-      justify-content: flex-start;
-      width: 40%;
-      height: 35rem;
+      width: 50%;
+      max-height: 100%;
+      border-radius: 50px;
+      -webkit-mask-image: linear-gradient(to left, transparent 10%, black 70%);
     }
 
     .conteudo {
       width: 50%;
-      height: 100%;
+      height: 95%;
       display: flex;
+      margin: 2rem;
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
@@ -40,7 +40,6 @@ export const ModalContainer = styled.div`
         rgba(196, 196, 196, 0) 118.16%
       );
       border-radius: 50px;
-      margin: 15px;
 
       font-family: "Fredoka One";
       font-style: normal;
