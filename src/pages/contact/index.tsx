@@ -1,19 +1,6 @@
 import { Container } from './styles';
 import { Header } from '../../components/Header'
-import { FcGoogle } from 'react-icons/fc'
-import { BsFacebook } from 'react-icons/bs'
 import { images } from '../../constants';
-import { useState } from 'react';
-
-import { MiniLoading } from '../../components/Loading';
-
-// import {buscaLogin, createUser, CreateUserData} from '../../interfaces/user'
-
-import { useNavigate } from 'react-router-dom'
-
-import { useAuth } from '../../hooks/auth';
-import { useToast } from '../../hooks/toast';
-
 
 
 
@@ -44,10 +31,6 @@ export const ShowContact: React.FC = () => {
             </div>
           </div>
       </main>
-
-      
-      
-
     </Container>
   )
 }
