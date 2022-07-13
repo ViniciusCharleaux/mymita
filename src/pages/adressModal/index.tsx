@@ -1,15 +1,14 @@
 import { useState } from "react";
 import Modal from 'react-modal';
 import images from "../../constants/images";
-import { Adress } from "../adressModal";
 import { Container, ModalContainer } from './styles';
 
-interface PaymentProps {
+interface AdressProps {
     isOpen: boolean;
     onRequestClose: () => void;
 }
 
-export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose }) => {
+export const Adress: React.FC<AdressProps> = ({ isOpen, onRequestClose }) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -71,7 +70,7 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose }) => {
                             <div className="valor">
                                 <label>valor:</label>
                                 <label>R$15,00</label>
-                            </div>  
+                            </div>
 
                             <div className="botoes">
                                 <button
@@ -79,21 +78,19 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose }) => {
                                     &lt; voltar
                                 </button>
                                 <button
-                                    className='avancar'
-                                    onClick={() => setIsModalOpen(true)}
-                                    >
-                                    avançar &gt;
+                                    className='avancar'>
+                                    charlo trouxa &gt;
                                 </button>
                             </div>
 
                         </div>
 
                     </main>
-                    
                     <Adress
                         isOpen={isModalOpen}
                         onRequestClose={() => setIsModalOpen(false)}
                     />
+                    
                 </ModalContainer>
 
             </Modal>
