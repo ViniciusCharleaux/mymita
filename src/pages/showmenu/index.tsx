@@ -3,7 +3,7 @@ import { Header } from '../../components/Header'
 import { FcGoogle } from 'react-icons/fc'
 import { BsFacebook } from 'react-icons/bs'
 import { images } from '../../constants';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { MiniLoading } from '../../components/Loading';
 
@@ -16,17 +16,34 @@ import { useToast } from '../../hooks/toast';
 
 import {Order} from '../order';
 
+import {Cardapio, buscaCardapio, cadastraCardapio} from '../../interfaces/cardapio';
+
 interface LoginData {
   email: string;
   password: string;
 }
 
 
-
 // procurar remover depois. pagina nao mostra sem. 
 export const ShowMenu: React.FC = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [cardapioHoje, setCardapio] = useState<Cardapio>({} as Cardapio);
+
+  useEffect(() => {
+
+    const fetchCardapio = async ()=> {        
+
+      const a = await buscaCardapio();
+      setCardapio(a[0]);
+  
+    }
+    fetchCardapio()
+  
+  },[])
+  
+
 
 
   return (
@@ -43,13 +60,18 @@ export const ShowMenu: React.FC = () => {
             <div className="left">
               <p>Guarnição</p>
               <div className="guarnicao-container">
-                <a>ARROZ</a>
+
+              {cardapioHoje?.Guarnicao?.split(", ").map((guarnicao,index) => (
+                <a key={index}>{guarnicao}</a>
+              ))}
+
+                {/* <a>ARROZ</a>
                 <a>FEIJÃO</a>
                 <a>NHOQUE</a>
                 <a>BATATA SAUTEE</a>
                 <a>MANDIOCA</a>
                 <a>FAROFA</a>
-                <a>OMELETE</a>
+                <a>OMELETE</a> */}
               </div>
               
             </div>
@@ -77,6 +99,7 @@ export const ShowMenu: React.FC = () => {
       <Order 
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
+        data={cardapioHoje?.Guarnicao?.split(", ")}
       />
 
     </Container>

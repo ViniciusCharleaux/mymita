@@ -7,9 +7,10 @@ import { Payment } from '../payment';
 interface OrderProps {
     isOpen: boolean;
     onRequestClose: () => void;
+    data: string[];
 }
 
-export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose }) => {
+export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,10 +38,14 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose }) => {
                             <div className="guarnicoes">
                                 <label htmlFor="guarnicoes" className="titulo">Selecione as guarnições:</label>
 
-                                <p><input type="checkbox" className="checkbox-round"></input>
-                                    <label htmlFor="guarnicao1">ARROZ</label></p>
+                                {data?.map((guarnicao, index) => (
+                                    <p><input type="checkbox" className="checkbox-round"></input>
+                                    <label htmlFor={`guarnicao${index+1}`}>{guarnicao}</label></p>
+                                ))}
 
-                                <p><input type="checkbox" className="checkbox-round"></input>
+                                
+
+                                {/* <p><input type="checkbox" className="checkbox-round"></input>
                                     <label htmlFor="guarnicao2">FEIJÃO</label></p>
 
                                 <p><input type="checkbox" className="checkbox-round"></input>
@@ -53,7 +58,7 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose }) => {
                                     <label htmlFor="guarnicao5">MANDIOCA</label></p>
 
                                 <p><input type="checkbox" className="checkbox-round"></input>
-                                    <label htmlFor="guarnicao6">FAROFA</label></p>
+                                    <label htmlFor="guarnicao6">FAROFA</label></p> */}
 
                             </div>
 
