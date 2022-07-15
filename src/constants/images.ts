@@ -8,6 +8,8 @@ import verificado from '../assets/verified.png'
 import caixinha from '../assets/caixinha 1.png'
 import contato from '../assets/contato.png'
 import whatsapp from '../assets/whatsapp.png'
+import bag from '../assets/bag.png'
+import marmitinha from '../assets/marmitinha.png'
 
 export default {
     mainImg,
@@ -18,5 +20,7 @@ export default {
     fritas,
     verificado,
     caixinha,
-    contato
+    contato,
+    bag,
+    marmitinha
 }
