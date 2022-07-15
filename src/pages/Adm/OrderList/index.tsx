@@ -14,7 +14,7 @@ export const OrderList: React.FC = () => {
 
     const fetchPedidos = async ()=> {        
 
-      // await cadastraPedido({Arquivado:0,Email:"teste", Guarnicao:"Arroz, Feijão, Batata",Mistura:"Carne", Salada:"Salada", Tamanho:"Grande",Valor:"15"});
+      //await cadastraPedido({Arquivado:0,Email:"teste", Guarnicao:"Arroz, Feijão, Batata",Mistura:"Carne", Salada:"Salada", Tamanho:"Grande",Valor:"15"});
 
       const a = await buscaPedido();
       setPedidos(a);

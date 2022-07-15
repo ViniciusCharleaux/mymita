@@ -31,9 +31,14 @@ export const ShowMenu: React.FC = () => {
 
   const [cardapioHoje, setCardapio] = useState<Cardapio>({} as Cardapio);
 
+  
+
   useEffect(() => {
 
     const fetchCardapio = async ()=> {        
+
+      // await cadastraCardapio({Guarnicao:"Arroz, Feijão, Batata, Mandioca, Abobrinha", 
+      //   Mistura:"Frango, Peixe, Carne de Porco, Carne de Vaca", Salada:"Salada"})
 
       const a = await buscaCardapio();
       setCardapio(a[0]);
@@ -79,13 +84,18 @@ export const ShowMenu: React.FC = () => {
               <p>Mistura</p>
                             
               <div className="mistura-container">
-              <a>FRANGO PARMEGIANA</a>
+
+              {cardapioHoje?.Mistura?.split(", ").map((mistura,index) => (
+                <a key={index}>{mistura}</a>
+              ))}
+
+              {/* <a>FRANGO PARMEGIANA</a>
               <a>MOQUECA DE PEIXE</a>
               <a>FEIJOADA</a>
               <a>FRANGO GRELHADO</a>
               <a>CALABRESA</a>
               <a>OMELETE</a>
-              <a>PORCO</a>
+              <a>PORCO</a> */}
               </div>
             </div>
           </div>

@@ -78,7 +78,7 @@ export const buscaPedido = async (): Promise<Pedidos[]> => {
             Arquivado: QueryDocumentSnapshot.get("arquivado"),
             Data: QueryDocumentSnapshot.get("data"),
             Email: QueryDocumentSnapshot.get("email"),
-            Chave: QueryDocumentSnapshot.get("[.key]")
+            Chave: QueryDocumentSnapshot.id
         };
 
         //console.log(docP);
@@ -86,7 +86,7 @@ export const buscaPedido = async (): Promise<Pedidos[]> => {
         P.push(docP);
     });
 
-    console.log(P);
+    //console.log(P);
 
     return P;
 }
