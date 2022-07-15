@@ -36,7 +36,11 @@ export const OrderList: React.FC = () => {
         <div className="varias-comandas">
 
         {pedidosHoje.map((pedido)=>{
-          <Comanda />          
+          <Comanda 
+          Guarnicao={pedido.Guarnicao}
+          Mistura={pedido.Mistura}
+          Tamanho = {pedido.Tamanho}
+           />          
         })}          
         </div>
       </div>
