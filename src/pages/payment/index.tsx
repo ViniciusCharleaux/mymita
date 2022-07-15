@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import { Container, ModalContainer } from "./styles";
+import { Adress } from "../adress";
 import images from "../../constants/images";
 
 interface PaymentProps {
@@ -91,10 +92,17 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose }) => {
                 <button className="voltar" onClick={() => onRequestClose()}>
                   &lt; voltar
                 </button>
-                <button className="avancar">avançar &gt;</button>
+                <button className="avancar" onClick={() => setIsModalOpen(true)}>
+                  
+                    avançar &gt;
+                </button>
               </div>
             </div>
           </main>
+          <Adress
+            isOpen={isModalOpen}
+            onRequestClose={() => setIsModalOpen(false)}
+          />
         </ModalContainer>
       </Modal>
     </>
