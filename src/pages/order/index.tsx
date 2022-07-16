@@ -80,7 +80,12 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                             <div className="mistura">
                                 <label htmlFor="mistura" className="titulo">Selecione a mistura:</label>
 
-                                <p>
+                                {data?.map((mistura, index) => (
+                                    <p><input type="radio" name="mistura" className="radio-mistura"></input>
+                                    <label htmlFor={`mistura${index+1}`}>{mistura}</label></p>
+                                ))}
+
+                                {/* <p>
                                     <label htmlFor="mistura2">FRANGO PARMEGIANA</label>
                                     <input type="radio" name="mistura" className="radio-mistura"></input>
                                 </p>
@@ -108,7 +113,7 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                                 <p>
                                     <label htmlFor="mistura2">OMELETE</label>
                                     <input type="radio" name="mistura" className="radio-mistura"></input>
-                                </p>
+                                </p> */}
 
                             </div>
 
