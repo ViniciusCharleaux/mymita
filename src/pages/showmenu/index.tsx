@@ -34,7 +34,7 @@ export const ShowMenu: React.FC = () => {
     const fetchCardapio = async ()=> {        
 
       // await cadastraCardapio({Guarnicao:"Arroz, Feijão, Batata, Mandioca, Abobrinha", 
-      //   Mistura:"Frango, Peixe, Carne de Porco, Carne de Vaca", Salada:"Salada"})
+      // Mistura:"Frango, Peixe, Carne de Porco, Carne de Vaca", Salada:"Salada"})
 
       const a = await buscaCardapio();
       setCardapio(a[0]);

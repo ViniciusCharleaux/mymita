@@ -104,7 +104,6 @@ function AuthContextProvider(props: AuthContextProviderProps) {
         const user = localStorage.getItem("@MyMita:user");
 
         if(user){
-          console.log(JSON.parse(user))
           setUser(JSON.parse(user))
         }
 

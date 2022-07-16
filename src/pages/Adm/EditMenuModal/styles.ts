@@ -6,6 +6,7 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 
   .content{
     width: 100%;
@@ -45,7 +46,7 @@ export const ModalContainer = styled.div`
         display: flex;
         flex-direction: column;
         overflow-y: auto;
-        max-height: 490px;
+        max-height: 400px;
 
         h3{
           font-family: 'Fredoka One';
@@ -112,6 +113,8 @@ export const ModalContainer = styled.div`
 
         display: flex;
         flex-direction: column;
+        overflow-y: auto;
+        max-height: 400px;
 
         h3{
           font-family: 'Fredoka One';
@@ -165,6 +168,28 @@ export const ModalContainer = styled.div`
         }
       }
 
+    }
+
+    footer{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .finish{
+      width: 225px;
+      height: 68px;
+      border-radius: 50px;
+      font-family: 'Fredoka One';
+      background-color: var(--color-red);
+      color: white;
+      font-size: 32px;
+
+      &:hover{
+        text-decoration: underline;
+      }
     }
   }
 
