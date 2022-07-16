@@ -1,7 +1,5 @@
 import { Container } from './styles';
 import { Header } from '../../components/Header'
-import { FcGoogle } from 'react-icons/fc'
-import { BsFacebook } from 'react-icons/bs'
 import { images } from '../../constants';
 import { useEffect, useState } from 'react';
 
@@ -17,20 +15,18 @@ import { useToast } from '../../hooks/toast';
 import {Order} from '../order';
 
 import {Cardapio, buscaCardapio, cadastraCardapio} from '../../interfaces/cardapio';
-
-interface LoginData {
-  email: string;
-  password: string;
-}
+import { EditMenuModal } from '../Adm/EditMenuModal';
 
 
 // procurar remover depois. pagina nao mostra sem. 
 export const ShowMenu: React.FC = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModal, setIsEditModal] = useState(false);
 
   const [cardapioHoje, setCardapio] = useState<Cardapio>({} as Cardapio);
 
+  const {user} = useAuth();
   
 
   useEffect(() => {
@@ -48,8 +44,6 @@ export const ShowMenu: React.FC = () => {
   
   },[])
   
-
-
 
   return (
     <Container>
@@ -99,9 +93,23 @@ export const ShowMenu: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="fazer_pedido">
-            <button type="button" onClick={() => setIsModalOpen(true)}>fazer pedido</button>
-          </div>
+
+          {user?.Privilegio === "0" 
+          ? 
+          (
+            <div className="fazer_pedido">
+              <button type="button" onClick={() => setIsEditModal(true)}>alterar cardápio</button>
+            </div>
+          )
+          :
+          (
+            <div className="fazer_pedido">
+              <button type="button" onClick={() => setIsModalOpen(true)}>fazer pedido</button>
+            </div>
+          )
+      
+        }
+          
       </main>
 
       
@@ -110,6 +118,11 @@ export const ShowMenu: React.FC = () => {
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         data={cardapioHoje?.Guarnicao?.split(", ")}
+      />
+
+      <EditMenuModal 
+        isOpen={isEditModal}
+        onRequestClose={() => setIsEditModal(false)}
       />
 
     </Container>

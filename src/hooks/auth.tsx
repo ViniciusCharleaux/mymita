@@ -82,8 +82,6 @@ function AuthContextProvider(props: AuthContextProviderProps) {
 
             loginUser.Key = md5(loginUser.Key)
 
-          console.log(loginUser)
-
       });
 
       if(loginUser.Key !== ''){

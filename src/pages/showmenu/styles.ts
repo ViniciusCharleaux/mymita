@@ -10,6 +10,8 @@ export const Container = styled.div`
   background: linear-gradient(180deg, rgba(255, 168, 0, 0.5) -23.56%, rgba(255, 255, 255, 0.5) 28.03%);
   position: relative;
 
+  overflow-x: hidden;
+
   p {
       color: #FF3030;
       font-family: 'Fredoka One';
@@ -33,7 +35,7 @@ export const Container = styled.div`
 
   main{
     width: 100%;
-    height: 80%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,7 +61,7 @@ export const Container = styled.div`
   }
     .center{
         width: 100%;
-        height: 90%;
+        height: 50%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -133,6 +135,6 @@ export const Container = styled.div`
 
   .fritas{
     position: absolute;
-    top: 40%;
+    top: 30%;
   }
 `
