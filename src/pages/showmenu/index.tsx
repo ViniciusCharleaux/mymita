@@ -117,7 +117,7 @@ export const ShowMenu: React.FC = () => {
       <Order 
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
-        data={cardapioHoje?.Guarnicao?.split(", ")}
+        data= {cardapioHoje?.Guarnicao?.split(", ")} //cardapioHoje?.Mistura?.split(", ")
       />
 
       <EditMenuModal 

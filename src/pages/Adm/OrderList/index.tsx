@@ -35,15 +35,22 @@ export const OrderList: React.FC = () => {
         <div className="barra"></div>
         <div className="varias-comandas">
 
-        {pedidosHoje.map((pedido)=>{
-          <Comanda 
-          Guarnicao={pedido.Guarnicao}
+        {pedidosHoje?.map((pedido)=>{
+          return <Comanda 
+          Guarnicao={pedido.Guarnicao.split(", ").join('\r\n')}
           Mistura={pedido.Mistura}
           Tamanho = {pedido.Tamanho}
            />          
-        })}          
+        })} 
+
+      {/* <Comanda 
+        Guarnicao="teste"
+        Mistura="teste"
+        Tamanho = "teste"
+       /> */}
+
         </div>
-      </div>
+      </div>      
 
       <Link to="/home">
         <div className="btn-sair-adm">sair</div>
