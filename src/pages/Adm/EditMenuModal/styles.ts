@@ -76,7 +76,7 @@ export const ModalContainer = styled.div`
 
           input{
             height: 42px;
-            width: 220px;
+            width: 210px;
             border-radius: 30px;
             padding: 0 1rem;
 
@@ -100,7 +100,8 @@ export const ModalContainer = styled.div`
         }
         .cancel{
             padding: 0.5rem;
-            border-radius:50%
+            border-radius:50%;
+            background-color: white;
           }
 
       }
@@ -121,16 +122,47 @@ export const ModalContainer = styled.div`
           }
         }
 
-        button{
+        .adicionar{
           width: 299px;
           height: 68px;
           background-color: var(--color-white);
           font-family: 'Fredoka One';
-          border-radius: 30px;
           font-size: 32px;
+          border-radius: 30px;
           margin-top: 2rem;
         }
 
+        .add-guarnicao{
+          width: 299px;
+          height: 68px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+
+          input{
+            height: 42px;
+            width: 220px;
+            border-radius: 30px;
+            padding: 0 1rem;
+
+            &:focus{
+              outline: 1px solid var(--color-red);
+            }
+          }
+
+          .ok{
+            background-color: var(--color-red);
+            padding: 0.8rem;
+            border-radius: 50%;
+            color: white;
+            font-family: 'Fredoka One';
+
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
       }
 
     }

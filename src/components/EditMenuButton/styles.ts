@@ -7,6 +7,8 @@ export const Container = styled.button`
 
   display: flex;
   flex-direction: row;
+  align-items: center;
+
   
 
   padding: 1rem;
