@@ -73,23 +73,32 @@ export const EditMenuModal: React.FC<EditMenuModalProps> = ({isOpen,onRequestClo
 
   const createNewMenu = async() => {
 
-    if(possuiCardapioHoje){
-      await apagaCardapio();
-
-      const cadastraGuarnicao = guarnicoes.join(', ')
-      const cadastraMistura = misturas.join(', ')
-      const cadastraSalada = "Alface, tomate"
-      await cadastraCardapio({Guarnicao: cadastraGuarnicao, Mistura: cadastraMistura, Salada: cadastraSalada})
-    
-
+    if(guarnicoes.length < 1 || misturas.length < 1){
+      alert("cadastre pelo menos um alimento")
     }else{
-      const cadastraGuarnicao = guarnicoes.join(', ')
-      const cadastraMistura = misturas.join(', ')
-      const cadastraSalada = "Alface, tomate"
-      await cadastraCardapio({Guarnicao: cadastraGuarnicao, Mistura: cadastraMistura, Salada: cadastraSalada})
+      if(possuiCardapioHoje){
+        await apagaCardapio();
+  
+        const cadastraGuarnicao = guarnicoes.join(', ')
+        const cadastraMistura = misturas.join(', ')
+        const cadastraSalada = "Alface, tomate"
+        await cadastraCardapio({Guarnicao: cadastraGuarnicao, Mistura: cadastraMistura, Salada: cadastraSalada})
+      
+  
+      }else{
+        const cadastraGuarnicao = guarnicoes.join(', ')
+        const cadastraMistura = misturas.join(', ')
+        const cadastraSalada = "Alface, tomate"
+        await cadastraCardapio({Guarnicao: cadastraGuarnicao, Mistura: cadastraMistura, Salada: cadastraSalada})
+      }
+      onRequestClose()
     }
 
-    onRequestClose()
+    
+
+    
+
+    
 
   }
   
