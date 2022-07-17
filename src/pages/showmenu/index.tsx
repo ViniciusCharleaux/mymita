@@ -28,13 +28,12 @@ export const ShowMenu: React.FC = () => {
 
   const {user} = useAuth();
   
+  const date = new Date().toLocaleDateString('pt-BR').split('/')
+  const today = date[0] + '/' + date[1]
 
   useEffect(() => {
 
     const fetchCardapio = async ()=> {        
-
-      // await cadastraCardapio({Guarnicao:"Arroz, Feijão, Batata, Mandioca, Abobrinha", 
-      // Mistura:"Frango, Peixe, Carne de Porco, Carne de Vaca", Salada:"Salada"})
 
       const a = await buscaCardapio();
       setCardapio(a[0]);
@@ -53,7 +52,7 @@ export const ShowMenu: React.FC = () => {
       />
       <main>
 
-          <div className="topo">CARDÁPIO - 13/04</div>
+          <div className="topo">CARDÁPIO - {today}</div>
 
           <div className="center">
             <div className="left">
