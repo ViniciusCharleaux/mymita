@@ -94,12 +94,6 @@ export const EditMenuModal: React.FC<EditMenuModalProps> = ({isOpen,onRequestClo
       onRequestClose()
     }
 
-    
-
-    
-
-    
-
   }
   
   return(
@@ -130,6 +124,7 @@ export const EditMenuModal: React.FC<EditMenuModalProps> = ({isOpen,onRequestClo
 
                 {guarnicoes.map((guarnicao, index) => (
                   <EditMenuButton 
+                    key={index}
                     text={guarnicao}
                     onClick={() => removeGuarnicao(index)}
                   />
@@ -165,7 +160,8 @@ export const EditMenuModal: React.FC<EditMenuModalProps> = ({isOpen,onRequestClo
                 <h3><span>Misturas</span> do dia:</h3>
 
                 {misturas.map((mistura, index) => (
-                  <EditMenuButton 
+                  <EditMenuButton
+                    key={index}
                     text={mistura}
                     onClick={() => removeMistura(index)}
                   />

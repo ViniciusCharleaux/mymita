@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { Container, ModalContainer } from "./styles";
 import { Adress } from "../adress";
@@ -7,10 +7,21 @@ import images from "../../constants/images";
 interface PaymentProps {
   isOpen: boolean;
   onRequestClose: () => void;
+  data: string[];
 }
 
-export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose }) => {
+export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+
+  useEffect(() => {
+
+    if(data && isOpen){    
+      setSelectedOptions(data)
+    }
+    
+},[data,isOpen])
 
   return (
     <>
@@ -38,10 +49,9 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose }) => {
                     <img src={images.marmitinha} alt="" />
                 </div>
                 <div className="opcoes-marmita">
-                  <label>1x arroz</label>
-                  <label>1x feijão</label>
-                  <label>1x farofa</label>
-                  <label>1x parmegiana de frango</label>
+                  {selectedOptions?.map((opcao, index) => (
+                    <label key={index} htmlFor="">1x {opcao}</label>
+                  ))}
                 </div>
               </div>
 

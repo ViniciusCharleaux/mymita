@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from 'react-modal';
 import images from "../../constants/images";
 import { Container, ModalContainer } from './styles';
@@ -10,9 +10,45 @@ interface OrderProps {
     data: string[];
 }
 
+interface Option{
+    isSelected: boolean;
+    option: string;
+}
+Modal.setAppElement('div')
 export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [selectedOptions, setSelectedOptions] = useState<Option[]>([])
+    const [finalSelections, setFinalSelections] = useState<string[]>([])
+
+
+    useEffect(() => {
+
+        if(data && isOpen){    
+            data[0].split(', ').forEach((dado) => {
+                setSelectedOptions((prevState) => [...prevState, {isSelected: false, option: dado}])
+            })
+            data[1].split(', ').forEach((dado) => {
+                setSelectedOptions((prevState) => [...prevState, {isSelected: false, option: dado}])
+            })
+        }
+        
+    },[data,isOpen])
+
+    const handleSelectOption = (index: number) => {
+        selectedOptions[index].isSelected = !selectedOptions[index].isSelected;
+    }
+
+    const handleSubmit = () => {
+        selectedOptions.forEach((option) => {
+            if (option.isSelected){
+                setFinalSelections((prevState) => [...prevState, option.option])
+            }
+        })
+
+        setIsModalOpen(true)
+    }
 
     return (
 
@@ -38,27 +74,10 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                             <div className="guarnicoes">
                                 <label htmlFor="guarnicoes" className="titulo">Selecione as guarnições:</label>
 
-                                {data?.map((guarnicao, index) => (
-                                    <p><input type="checkbox" className="checkbox-round"></input>
+                                {data[0]?.split(', ')?.map((guarnicao, index) => (
+                                    <p key={index}><input type="checkbox" className="checkbox-round" onChange={() => handleSelectOption(index)}></input>
                                     <label htmlFor={`guarnicao${index+1}`}>{guarnicao}</label></p>
                                 ))}
-
-                                
-
-                                {/* <p><input type="checkbox" className="checkbox-round"></input>
-                                    <label htmlFor="guarnicao2">FEIJÃO</label></p>
-
-                                <p><input type="checkbox" className="checkbox-round"></input>
-                                    <label htmlFor="guarnicao3" >NHOQUE</label></p>
-
-                                <p><input type="checkbox" className="checkbox-round"></input>
-                                    <label htmlFor="guarnicao4">BATATA</label></p>
-
-                                <p><input type="checkbox" className="checkbox-round"></input>
-                                    <label htmlFor="guarnicao5">MANDIOCA</label></p>
-
-                                <p><input type="checkbox" className="checkbox-round"></input>
-                                    <label htmlFor="guarnicao6">FAROFA</label></p> */}
 
                             </div>
 
@@ -80,40 +99,11 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                             <div className="mistura">
                                 <label htmlFor="mistura" className="titulo">Selecione a mistura:</label>
 
-                                {data?.map((mistura, index) => (
-                                    <p><input type="radio" name="mistura" className="radio-mistura"></input>
+                                {data[1]?.split(', ').map((mistura, index) => (
+                                    <p key={index}><input type="radio" name="mistura" className="radio-mistura"></input>
                                     <label htmlFor={`mistura${index+1}`}>{mistura}</label></p>
                                 ))}
 
-                                {/* <p>
-                                    <label htmlFor="mistura2">FRANGO PARMEGIANA</label>
-                                    <input type="radio" name="mistura" className="radio-mistura"></input>
-                                </p>
-
-                                <p>
-                                    <label htmlFor="mistura2">MOQUECA DE PEIXE</label>
-                                    <input type="radio" name="mistura" className="radio-mistura"></input>
-                                </p>
-
-                                <p>
-                                    <label htmlFor="mistura2">FEIJOADA</label>
-                                    <input type="radio" name="mistura" className="radio-mistura"></input>
-                                </p>
-
-                                <p>
-                                    <label htmlFor="mistura2">FRANGO GRELHADO</label>
-                                    <input type="radio" name="mistura" className="radio-mistura"></input>
-                                </p>
-
-                                <p>
-                                    <label htmlFor="mistura2">CALABRESA</label>
-                                    <input type="radio" name="mistura" className="radio-mistura"></input>
-                                </p>
-
-                                <p>
-                                    <label htmlFor="mistura2">OMELETE</label>
-                                    <input type="radio" name="mistura" className="radio-mistura"></input>
-                                </p> */}
 
                             </div>
 
@@ -124,7 +114,7 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                                 cancelar
                             </button>
                             <button
-                                className='avancar' onClick={() => setIsModalOpen(true)}>
+                                className='avancar' onClick={handleSubmit}>
                                 avançar &gt;
                             </button>
                         </div>
@@ -133,6 +123,7 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                     <Payment
                         isOpen={isModalOpen}
                         onRequestClose={() => setIsModalOpen(false)}
+                        data={finalSelections}
                     />
                 </ModalContainer>
 

@@ -82,13 +82,6 @@ export const ShowMenu: React.FC = () => {
                 <a key={index}>{mistura}</a>
               ))}
 
-              {/* <a>FRANGO PARMEGIANA</a>
-              <a>MOQUECA DE PEIXE</a>
-              <a>FEIJOADA</a>
-              <a>FRANGO GRELHADO</a>
-              <a>CALABRESA</a>
-              <a>OMELETE</a>
-              <a>PORCO</a> */}
               </div>
             </div>
           </div>
@@ -116,7 +109,7 @@ export const ShowMenu: React.FC = () => {
       <Order 
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
-        data= {cardapioHoje?.Guarnicao?.split(", ")} //cardapioHoje?.Mistura?.split(", ")
+        data= {[cardapioHoje?.Guarnicao, cardapioHoje?.Mistura]} //cardapioHoje?.Mistura?.split(", ")
       />
 
       <EditMenuModal 
