@@ -55,5 +55,9 @@ export const Container = styled.div`
     font-family: 'fredoka one';
     font-size: 25px;
     color: white;
+
+    &:hover{
+      text-decoration: underline;
+    }
   }
 `;

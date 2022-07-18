@@ -39,7 +39,12 @@ export const OrderList: React.FC = () => {
           return (
             <Comanda
               key={index}
-              Pedido={pedido.Pedidos}
+              Pedido={pedido.pedidos}
+              price={pedido.valor}
+              address={pedido.cliente.endereco}
+              cliente={pedido.cliente.nome}
+              size={pedido.tamanho}
+
            />  
           )
                   

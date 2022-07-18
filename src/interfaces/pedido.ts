@@ -3,22 +3,29 @@ import { initializeApp } from 'firebase/app';
 import {firebaseConfig} from '../services/firebase'
 import { collection, doc, Firestore, getDoc, getDocs, getFirestore, query, QueryDocumentSnapshot, setDoc, Timestamp, updateDoc, where } from 'firebase/firestore'
 
+export interface PedidoUser{
+    nome: string;
+    email: string;
+    userKey: string;
+    endereco: string;
+}
+
 export interface Pedido{
-    Pedido: string[];
-    Tamanho: string,
-    Valor: string,
-    Email: string
-    UserKey: string
+    pedido: string[];
+    tamanho: string,
+    valor: string,
+    cliente: PedidoUser
 }
 
 export interface Pedidos{
-    Pedidos: string[];
-    Tamanho: string,
-    Valor: string,
-    Arquivado: number,
-    Data: Date,
-    Email: string,
-    Chave: string
+    pedidos: string[];
+    tamanho: string,
+    valor: string,
+    arquivado: number,
+    data: Date,
+    email: string,
+    chave: string
+    cliente: PedidoUser
 }
 
 const app = initializeApp(firebaseConfig);
@@ -30,13 +37,17 @@ export const cadastraPedido = async (Data:Pedido) => {
 
     try {
         await setDoc(doc(ref),{
-            pedido: Data.Pedido,
-            tamanho: Data.Tamanho,
-            valor: Data.Valor,
+            pedido: Data.pedido,
+            tamanho: Data.tamanho,
+            valor: Data.valor,
             data: Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"}),
             arquivado: 0,
-            email: Data.Email,
-            chaveUser: Data.UserKey
+            cliente: {
+                email: Data.cliente.email,
+                nome: Data.cliente.nome,
+                chave: Data.cliente.userKey,
+                endereco: Data.cliente.endereco
+            }
         })
         
         return 1
@@ -48,14 +59,12 @@ export const cadastraPedido = async (Data:Pedido) => {
 }
 
 export const buscaPedido = async (): Promise<Pedidos[]> => {
-    const P: Pedidos[] = [];
-    
-    const ref = collection(firestore, "pedidos");    
 
+    const P: Pedidos[] = [];
+    const ref = collection(firestore, "pedidos");    
     const tempo =  Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"});
 
     const q = query(ref, where("data", "==", tempo));
-      
     const querySnapshot = await getDocs(q); 
 
     //console.log(querySnapshot);
@@ -65,13 +74,14 @@ export const buscaPedido = async (): Promise<Pedidos[]> => {
         //console.log(QueryDocumentSnapshot.data());
         
         const docP:Pedidos = {     
-            Pedidos: QueryDocumentSnapshot.data().pedido,       
-            Tamanho: QueryDocumentSnapshot.get("tamanho"),
-            Valor: QueryDocumentSnapshot.get("valor"),
-            Arquivado: QueryDocumentSnapshot.get("arquivado"),
-            Data: QueryDocumentSnapshot.get("data"),
-            Email: QueryDocumentSnapshot.get("email"),
-            Chave: QueryDocumentSnapshot.id
+            pedidos: QueryDocumentSnapshot.data().pedido,       
+            tamanho: QueryDocumentSnapshot.get("tamanho"),
+            valor: QueryDocumentSnapshot.get("valor"),
+            arquivado: QueryDocumentSnapshot.get("arquivado"),
+            data: QueryDocumentSnapshot.get("data"),
+            email: QueryDocumentSnapshot.get("email"),
+            chave: QueryDocumentSnapshot.id,
+            cliente: QueryDocumentSnapshot.get("cliente")
         };
 
         //console.log(docP);

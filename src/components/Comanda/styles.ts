@@ -19,14 +19,20 @@ export const Container = styled.div`
     flex-direction: column;
   }
 
+  header{
+      width: 100%;
+      height: 50px;
+      display: flex;
+      flex-direction: column;
+  }
+
   .btn-comanda {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     align-items: center;
-    margin-top: 45px;
     
     button {
       width: 170px;
@@ -38,6 +44,7 @@ export const Container = styled.div`
       font-family: "fredoka one";
       color: white;
       background-color: #ffa800;
+      margin-bottom: 1rem;
     }
     
     .rejeitar {

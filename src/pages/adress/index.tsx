@@ -32,11 +32,15 @@ export const Adress: React.FC<AdressProps> = ({ isOpen, onRequestClose, data}) =
 
         if(user){
             const res = await cadastraPedido({
-                Pedido: data.data,
-                Tamanho: data.size,
-                UserKey: user.Key,
-                Email: user.Contato,
-                Valor: "15,00",
+                pedido: data.data,
+                tamanho: data.size,
+                valor: data.price,
+                cliente:{
+                    email: user.Contato,
+                    nome: user.Nome,
+                    userKey: user.Key,
+                    endereco: "Rua dos Bobos, 0"
+                }
             });
 
             if(res === 1){
