@@ -16,7 +16,6 @@ interface AuthContextType {
 }
 
 
-
 export interface User {
     Key:string  
     Endereco: string
@@ -66,6 +65,10 @@ function AuthContextProvider(props: AuthContextProviderProps) {
         Privilegio: '1',
     }
 
+    let token:{token : string} = {
+      token: ''
+    }
+
       querySnapshot.forEach(doc => {
 
           console.log(doc.data());
@@ -80,17 +83,16 @@ function AuthContextProvider(props: AuthContextProviderProps) {
 
             setUser(loginUser)
 
-            loginUser.Key = md5(loginUser.Key)
+            token.token = md5(loginUser.Key)
 
       });
 
       if(loginUser.Key !== ''){
         //mensagem de sucesso
-
         // localStorage.setItem('@MyMita:token', );
         localStorage.setItem('@MyMita:user', JSON.stringify(loginUser));
+        localStorage.setItem('@MyMita:token', JSON.stringify(token));
         return true;
-
 
       }else{
         return false
@@ -102,19 +104,23 @@ function AuthContextProvider(props: AuthContextProviderProps) {
       const updateLogin = (() => {
 
         const user = localStorage.getItem("@MyMita:user");
+        const token = localStorage.getItem("@MyMita:token");
 
-        if(user){
-          setUser(JSON.parse(user))
+        if(user && token){
+          if(md5(JSON.parse(token).token) === JSON.parse(user).Key){
+            setUser(JSON.parse(user))
+          }else{
+            throw new Error('Token inválido')
+          }
         }
 
       })
 
+
       const logOut = useCallback(() => {
 
         localStorage.removeItem('@MyMita:user');
-
         setUser(undefined)
-
         return true
 
       }, []);
