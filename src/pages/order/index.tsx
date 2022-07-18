@@ -14,6 +14,8 @@ interface Option{
     isSelected: boolean;
     option: string;
 }
+
+
 Modal.setAppElement('div')
 export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => {
 
@@ -21,6 +23,8 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
 
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([])
     const [finalSelections, setFinalSelections] = useState<string[]>([])
+
+    const [size, setSize] = useState('');
 
 
     useEffect(() => {
@@ -51,9 +55,7 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
     }
 
     return (
-
         <>
-
             <Modal
                 isOpen={isOpen}
                 onRequestClose={onRequestClose}
@@ -74,7 +76,7 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                             <div className="guarnicoes">
                                 <label htmlFor="guarnicoes" className="titulo">Selecione as guarnições:</label>
 
-                                {data[0]?.split(', ')?.map((guarnicao, index) => (
+                                {data[0] && data[0].split(', ')?.map((guarnicao, index) => (
                                     <p key={index}><input type="checkbox" className="checkbox-round" onChange={() => handleSelectOption(index)}></input>
                                     <label htmlFor={`guarnicao${index+1}`}>{guarnicao}</label></p>
                                 ))}
@@ -87,10 +89,28 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                                 </div>
                                 <div className="tamanho-conteudo">
                                     <label htmlFor="tamanho">TAMANHO:</label>
-                                    <p>
-                                        <input type="radio" name="tamanho" className="radio-tamanho"></input>
-                                        <input type="radio" name="tamanho" className="radio-tamanho"></input>
-                                        <input type="radio" name="tamanho" className="radio-tamanho"></input>
+                                    <p> 
+                                        <input
+                                          type="radio"
+                                          name="tamanho"
+                                          className="radio-tamanho"
+                                          value="Pequena"
+                                          onChange={e =>setSize(e.target.value)}
+                                         />
+                                        <input 
+                                            type="radio" 
+                                            name="tamanho" 
+                                            className="radio-tamanho" 
+                                            value="Media" 
+                                            onChange={e => setSize(e.target.value)}
+                                        />
+                                        <input 
+                                            type="radio" 
+                                            name="tamanho" 
+                                            className="radio-tamanho"
+                                            value="Grande" 
+                                            onChange={e => setSize(e.target.value)}
+                                        />
                                     </p>
                                 </div>
 
@@ -99,14 +119,12 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                             <div className="mistura">
                                 <label htmlFor="mistura" className="titulo">Selecione a mistura:</label>
 
-                                {data[1]?.split(', ').map((mistura, index) => (
+                                {data[1]?.split(', ')?.map((mistura, index) => (
                                     <p key={index}><input type="radio" name="mistura" className="radio-mistura"></input>
                                     <label htmlFor={`mistura${index+1}`}>{mistura}</label></p>
                                 ))}
 
-
                             </div>
-
                         </div>
                         <div className="botoes">
                             <button
@@ -123,14 +141,10 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                     <Payment
                         isOpen={isModalOpen}
                         onRequestClose={() => setIsModalOpen(false)}
-                        data={finalSelections}
+                        data={{data: finalSelections, size: size}}
                     />
                 </ModalContainer>
-
             </Modal>
-
         </>
-
-
     )
 }

@@ -4,10 +4,16 @@ import { Container, ModalContainer } from "./styles";
 import { Adress } from "../adress";
 import images from "../../constants/images";
 
+interface Data {
+  data: string[];
+  size: string;
+}
+
+
 interface PaymentProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  data: string[];
+  data: Data
 }
 
 export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }) => {
@@ -18,7 +24,7 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
   useEffect(() => {
 
     if(data && isOpen){    
-      setSelectedOptions(data)
+      setSelectedOptions(data.data)
     }
     
 },[data,isOpen])
@@ -95,7 +101,11 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
 
               <div className="valor">
                 <label>valor:</label>
-                <label className="valor-total">R$15,00</label>
+                <label className="valor-total">
+                  {
+                  data?.size === "Pequena" ? "R$ 10,00" : data.size === "Media" ? "R$ 15,00" : "R$ 20,00"
+                  }
+                </label>
               </div>
 
               <div className="botoes">
