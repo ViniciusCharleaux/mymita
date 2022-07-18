@@ -1,7 +1,5 @@
 import { Container } from "./styles";
-
 import { images } from "../../constants";
-
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
@@ -9,23 +7,28 @@ import { OrderContainer } from "../../components/OrderContainer";
 import { EstadoPedido } from "../../components/EstadoPedido";
 import { PedidoAgenda } from "../../components/PedidoAgenda";
 
+import {buscaPedidoByUser, Pedidos} from '../../interfaces/pedido';
+import { useEffect, useState } from "react";
+
+
 export const Dashboard: React.FC = () => {
-  const data = [
-    {
-      name: "vinicius",
-      data: "25/10",
-      pagamento: "dinheiro",
-    },
-    {
-      name: "cindel",
-      data: "25/11",
-      pagamento: "pix",
-    },
-  ];
 
   const { logOut, user } = useAuth();
-
   const navigate = useNavigate();
+
+  const [orderHistoric, setOrderHistoric] = useState<Pedidos[]>([]);
+
+  useEffect(() => {
+
+    const fetchPedidos = async()=>{
+      if(user){
+        setOrderHistoric(await buscaPedidoByUser(user.Key))
+      }
+    }
+
+    fetchPedidos()
+  },[])
+
 
   const handleLogout = () => {
     logOut();
@@ -68,12 +71,13 @@ export const Dashboard: React.FC = () => {
           <div className="left">
             <p>histórico de pedidos</p>
             <div className="historic-container">
-              {data.map((pedido, index) => (
+              {orderHistoric?.map((pedido, index) => (
                 <OrderContainer
                   key={index}
                   data={pedido.data}
-                  name={pedido.name}
                   pagamento={pedido.pagamento}
+                  valor={pedido.valor}
+                  arquivado={pedido.arquivado}
                 />
               ))}
             </div>

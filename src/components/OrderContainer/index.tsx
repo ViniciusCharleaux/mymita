@@ -1,13 +1,17 @@
 import {Container} from './styles';
 
 interface OrdemContainerProps {
-    name: string;
-    data: string;
+    data: Date;
     pagamento: string;
+    valor: string;
+    arquivado: number;
 }
 
+//0 para ativo, 1 para rejeitado, 2 para arquivado, 3 para cancelado
 
-export const OrderContainer:React.FC<OrdemContainerProps> = ({data, name, pagamento}) => {
+export const OrderContainer:React.FC<OrdemContainerProps> = ({data, pagamento, valor, arquivado}) => {
+
+
     return (
         <Container>
             <div className='left_pedido'>
@@ -17,9 +21,25 @@ export const OrderContainer:React.FC<OrdemContainerProps> = ({data, name, pagame
                 </svg>
             </div>
             <div className='right_pedido'>
-                <h6>pedido {name}</h6>
-                <p className='historic-desc'>entregue em: {data}</p>
-                <p className='historic-desc'>pagamento em: {pagamento}</p>
+                {arquivado !== 2 
+                ? 
+                    (
+                        arquivado === 1 ?
+                            <h6 className="cancelled">rejeitado</h6>
+                            : arquivado === 3 ?
+                            <h6 className="cancelled">cancelado</h6>
+                            : <h6 className="cancelled">ativo</h6>
+                    )
+                :
+                    (
+                        <>
+                            <h6>data: {data}</h6>
+                            <p className='historic-desc'>valor: {valor}</p>
+                            <p className='historic-desc'>pagamento em: {pagamento || "pix"}</p>
+                        </> 
+                    )
+                }
+                
             </div>
         </Container>
     )

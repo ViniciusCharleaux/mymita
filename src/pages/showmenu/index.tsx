@@ -61,15 +61,11 @@ export const ShowMenu: React.FC = () => {
 
               {cardapioHoje?.Guarnicao?.split(", ").map((guarnicao,index) => (
                 <a key={index}>{guarnicao}</a>
+
+                
               ))}
 
-                {/* <a>ARROZ</a>
-                <a>FEIJÃO</a>
-                <a>NHOQUE</a>
-                <a>BATATA SAUTEE</a>
-                <a>MANDIOCA</a>
-                <a>FAROFA</a>
-                <a>OMELETE</a> */}
+
               </div>
               
             </div>

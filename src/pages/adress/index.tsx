@@ -35,6 +35,7 @@ export const Adress: React.FC<AdressProps> = ({ isOpen, onRequestClose, data}) =
                 pedido: data.data,
                 tamanho: data.size,
                 valor: data.price,
+                pagamento: data.payment,
                 cliente:{
                     email: user.Contato,
                     nome: user.Nome,

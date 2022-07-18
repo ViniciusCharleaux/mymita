@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 90%;
-  height: 6rem;
+  height: 8rem;
   display: flex;
   justify-content: center;
   background: #ffffff;
@@ -24,6 +24,10 @@ export const Container = styled.div`
 
   .right_pedido {
     width: 70%;
+
+    .cancelled{
+      color: var(--color-red)
+    }
 
     h6{
       font-family: "fredoka one";
