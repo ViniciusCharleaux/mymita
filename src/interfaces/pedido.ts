@@ -133,18 +133,10 @@ export const buscaPedidoByUser = async (UserKey:string): Promise<Pedidos[]> => {
 }
 
 
-export const arquivaPedido = async (Chave:string) => {
-    const ref = doc(firestore, "pedidos", Chave);    
+export const mudaStatusPedido = async (chave:string, status: number) => {
+    const ref = doc(firestore, "pedidos", chave);    
 
     await updateDoc(ref, {
-        arquivado: 1
-    });
-}
-
-export const aceitaPedido = async (Chave:string) => {
-    const ref = doc(firestore, "pedidos", Chave);    
-
-    await updateDoc(ref, {
-        arquivado: 2
+        arquivado: status
     });
 }

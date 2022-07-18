@@ -7,7 +7,7 @@ interface OrdemContainerProps {
     arquivado: number;
 }
 
-//0 para ativo, 1 para rejeitado, 2 para arquivado, 3 para cancelado
+//0 para recem-criado, 1 para aceito, 2 para rejeitado, 3 para arquivado, 4 para cancelado
 
 export const OrderContainer:React.FC<OrdemContainerProps> = ({data, pagamento, valor, arquivado}) => {
 
@@ -21,21 +21,25 @@ export const OrderContainer:React.FC<OrdemContainerProps> = ({data, pagamento, v
                 </svg>
             </div>
             <div className='right_pedido'>
-                {arquivado !== 2 
+                {arquivado !== 3 
                 ? 
                     (
-                        arquivado === 1 ?
+                        arquivado === 2 ?
                             <h6 className="cancelled">rejeitado</h6>
-                            : arquivado === 3 ?
+                            : arquivado === 4 ?
                             <h6 className="cancelled">cancelado</h6>
-                            : <h6 className="cancelled">ativo</h6>
+                            : arquivado === 0 ?
+                            <h6 className="cancelled">aguardando confirmação</h6>
+                            :
+                            <h6 className="cancelled">ativo</h6>
                     )
                 :
                     (
                         <>
-                            <h6>data: {data}</h6>
+                            <h6>{data}</h6>
                             <p className='historic-desc'>valor: {valor}</p>
                             <p className='historic-desc'>pagamento em: {pagamento || "pix"}</p>
+                            <p className='historic-desc'>entrega bem sucedida</p>
                         </> 
                     )
                 }

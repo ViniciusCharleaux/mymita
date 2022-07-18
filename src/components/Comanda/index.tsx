@@ -6,9 +6,12 @@ interface PropsComanda {
   size: string;
   cliente: string;
   address: string;
+  chave: string;
+  handleAcceptOrder: (chave: string) => void;
+  handleCancelOrder: (chave: string) => void;
 }
 
-export const Comanda: React.FC<PropsComanda> = ({Pedido, price, size, cliente, address}) => {
+export const Comanda: React.FC<PropsComanda> = ({Pedido, price, size, cliente, chave, handleAcceptOrder, handleCancelOrder}) => {
   return (
     <Container>
       <div className="pedido-comanda">
@@ -24,8 +27,8 @@ export const Comanda: React.FC<PropsComanda> = ({Pedido, price, size, cliente, a
         
       </div>
       <div className="btn-comanda">
-        <button>confirmar</button>
-        <button className="rejeitar">rejeitar</button>
+        <button onClick={() => handleAcceptOrder(chave)}>confirmar</button>
+        <button onClick={() => handleCancelOrder(chave)} className="rejeitar">rejeitar</button>
       </div>
     </Container>
   );

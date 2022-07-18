@@ -3,7 +3,7 @@ import { Comanda } from "../../../components/Comanda";
 import { Header } from "../../../components/Header";
 import { Link } from "react-router-dom";
 
-import {Pedidos, buscaPedido, cadastraPedido} from "../../../interfaces/pedido"
+import {Pedidos, buscaPedido, cadastraPedido, mudaStatusPedido} from "../../../interfaces/pedido"
 import { useEffect, useState } from "react";
 
 export const OrderList: React.FC = () => {
@@ -18,11 +18,23 @@ export const OrderList: React.FC = () => {
 
       const a = await buscaPedido();
       setPedidos(a);
-      console.log(a);
     }
+
     fetchPedidos()
   
   },[])
+
+  const handleAcceptOrder = async (chave:string) => {
+
+    await mudaStatusPedido(chave, 1)
+
+  }
+
+  const handleCancelOrder = async (chave:string) => {
+
+    await mudaStatusPedido(chave, 2)
+
+  }
 
   return (
     <Container>
@@ -44,7 +56,9 @@ export const OrderList: React.FC = () => {
               address={pedido.cliente.endereco}
               cliente={pedido.cliente.nome}
               size={pedido.tamanho}
-
+              chave={pedido.chave}
+              handleAcceptOrder={handleAcceptOrder}
+              handleCancelOrder={handleCancelOrder}
            />  
           )
                   
