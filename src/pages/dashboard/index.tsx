@@ -68,8 +68,9 @@ export const Dashboard: React.FC = () => {
           <div className="left">
             <p>histórico de pedidos</p>
             <div className="historic-container">
-              {data.map((pedido) => (
+              {data.map((pedido, index) => (
                 <OrderContainer
+                  key={index}
                   data={pedido.data}
                   name={pedido.name}
                   pagamento={pedido.pagamento}

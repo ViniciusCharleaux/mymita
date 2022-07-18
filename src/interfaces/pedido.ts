@@ -11,10 +11,8 @@ export interface Pedido{
     UserKey: string
 }
 
-interface Pedidos{
-    Guarnicao: string,
-    Mistura: string,
-    Salada: string,
+export interface Pedidos{
+    Pedidos: string[];
     Tamanho: string,
     Valor: string,
     Arquivado: number,
@@ -66,10 +64,8 @@ export const buscaPedido = async (): Promise<Pedidos[]> => {
         
         //console.log(QueryDocumentSnapshot.data());
         
-        const docP:Pedidos = {            
-            Guarnicao: QueryDocumentSnapshot.get("guarnicao"),
-            Mistura: QueryDocumentSnapshot.get("mistura"),
-            Salada: QueryDocumentSnapshot.get("salada"),
+        const docP:Pedidos = {     
+            Pedidos: QueryDocumentSnapshot.data().pedido,       
             Tamanho: QueryDocumentSnapshot.get("tamanho"),
             Valor: QueryDocumentSnapshot.get("valor"),
             Arquivado: QueryDocumentSnapshot.get("arquivado"),
@@ -83,7 +79,7 @@ export const buscaPedido = async (): Promise<Pedidos[]> => {
         P.push(docP);
     });
 
-    //console.log(P);
+    console.log(P);
 
     return P;
 }

@@ -1,11 +1,12 @@
-import { useState } from "react";
 import Modal from 'react-modal';
 import images from "../../constants/images";
-//import { Adress } from "../adress";
 import { Container, ModalContainer } from './styles';
 import {cadastraPedido, Pedido} from '../../interfaces/pedido';
 
 import {useAuth} from '../../hooks/auth'
+import {useToast} from '../../hooks/toast';
+
+import { useNavigate } from "react-router-dom";
 
 interface Data{
     data: string[];
@@ -23,17 +24,25 @@ interface AdressProps {
 export const Adress: React.FC<AdressProps> = ({ isOpen, onRequestClose, data}) => {
 
     const {user} = useAuth();
+    const {toastTopSuccess} = useToast();
+
+    const navigate = useNavigate();
 
     const handlePedido = async() => {
 
         if(user){
-            await cadastraPedido({
+            const res = await cadastraPedido({
                 Pedido: data.data,
                 Tamanho: data.size,
                 UserKey: user.Key,
                 Email: user.Contato,
                 Valor: "15,00",
             });
+
+            if(res === 1){
+                toastTopSuccess('Pedido realizado com sucesso!');
+                navigate('/dashboard');
+            }
         }
         
     }

@@ -28,6 +28,10 @@ interface AuthContextProviderProps {
     children: ReactNode;
 }
 
+interface Token{
+  token: string
+}
+
 interface LoginData {
     email: string;
     password: string;
@@ -65,13 +69,11 @@ function AuthContextProvider(props: AuthContextProviderProps) {
         Privilegio: '1',
     }
 
-    let token:{token : string} = {
+    let token:Token = {
       token: ''
     }
 
       querySnapshot.forEach(doc => {
-
-          console.log(doc.data());
 
             loginUser = {
               Contato: '',
@@ -107,13 +109,15 @@ function AuthContextProvider(props: AuthContextProviderProps) {
         const token = localStorage.getItem("@MyMita:token");
 
         if(user && token){
-          if(md5(JSON.parse(token).token) === JSON.parse(user).Key){
+
+
+          if(md5(JSON.parse(user).Key),JSON.parse(token).token){
             setUser(JSON.parse(user))
           }else{
+            console.log(md5(JSON.parse(user).Key),JSON.parse(token).token)
             throw new Error('Token inválido')
           }
         }
-
       })
 
 

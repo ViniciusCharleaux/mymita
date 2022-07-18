@@ -3,12 +3,12 @@ import { Comanda } from "../../../components/Comanda";
 import { Header } from "../../../components/Header";
 import { Link } from "react-router-dom";
 
-import {Pedido, buscaPedido, cadastraPedido} from "../../../interfaces/pedido"
+import {Pedidos, buscaPedido, cadastraPedido} from "../../../interfaces/pedido"
 import { useEffect, useState } from "react";
 
 export const OrderList: React.FC = () => {
 
-  const [pedidosHoje, setPedidos] = useState<Pedido[]>([]);
+  const [pedidosHoje, setPedidos] = useState<Pedidos[]>([]);
 
   useEffect(() => {
 
@@ -35,12 +35,14 @@ export const OrderList: React.FC = () => {
         <div className="barra"></div>
         <div className="varias-comandas">
 
-        {pedidosHoje?.map((pedido)=>{
-          return <Comanda 
-          Guarnicao={pedido.Guarnicao.split(", ").join('\r\n')}
-          Mistura={pedido.Mistura}
-          Tamanho = {pedido.Tamanho}
-           />          
+        {pedidosHoje?.map((pedido, index)=>{
+          return (
+            <Comanda
+              key={index}
+              Pedido={pedido.Pedidos}
+           />  
+          )
+                  
         })} 
 
       {/* <Comanda 
