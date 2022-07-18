@@ -3,15 +3,40 @@ import Modal from 'react-modal';
 import images from "../../constants/images";
 //import { Adress } from "../adress";
 import { Container, ModalContainer } from './styles';
+import {cadastraPedido, Pedido} from '../../interfaces/pedido';
+
+import {useAuth} from '../../hooks/auth'
+
+interface Data{
+    data: string[];
+    size: string;
+    payment: string;
+    price: string;
+}
 
 interface AdressProps {
     isOpen: boolean;
     onRequestClose: () => void;
+    data: Data
 }
 
-export const Adress: React.FC<AdressProps> = ({ isOpen, onRequestClose }) => {
+export const Adress: React.FC<AdressProps> = ({ isOpen, onRequestClose, data}) => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const {user} = useAuth();
+
+    const handlePedido = async() => {
+
+        if(user){
+            await cadastraPedido({
+                Pedido: data.data,
+                Tamanho: data.size,
+                UserKey: user.Key,
+                Email: user.Contato,
+                Valor: "15,00",
+            });
+        }
+        
+    }
 
     return (
 
@@ -64,20 +89,13 @@ export const Adress: React.FC<AdressProps> = ({ isOpen, onRequestClose }) => {
                                 </button>
                                 <button
                                     className='avancar'
-                                    onClick={() => setIsModalOpen(true)}
+                                    onClick={() => handlePedido()}
                                     >
                                     Finalizar &#10003;
                                 </button>
                             </div>
-
                         </div>
-
                     </main>
-                    
-                    <Adress
-                        isOpen={isModalOpen}
-                        onRequestClose={() => setIsModalOpen(false)}
-                    />
                 </ModalContainer>
 
             </Modal>

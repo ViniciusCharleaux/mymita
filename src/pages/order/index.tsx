@@ -24,7 +24,10 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([])
     const [finalSelections, setFinalSelections] = useState<string[]>([])
 
+    //const [guarnicaoSplitted, setGuarnicaoSplitted] = useState<string[]>([])
+
     const [size, setSize] = useState('');
+
 
 
     useEffect(() => {
@@ -119,9 +122,9 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                             <div className="mistura">
                                 <label htmlFor="mistura" className="titulo">Selecione a mistura:</label>
 
-                                {data[1]?.split(', ')?.map((mistura, index) => (
-                                    <p key={index}><input type="radio" name="mistura" className="radio-mistura"></input>
-                                    <label htmlFor={`mistura${index+1}`}>{mistura}</label></p>
+                                {data[1]?.split(', ')?.map((guarnicao, index) => (
+                                    <p key={index}><input type="radio" name="mistura" className="radio-mistura" onChange={() => handleSelectOption(index + data[0]?.split(', ').length)}></input>
+                                    <label htmlFor={`mistura${index+1}`}>{guarnicao}</label></p>
                                 ))}
 
                             </div>

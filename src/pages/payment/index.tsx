@@ -21,10 +21,20 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
 
+  const [payment, setPayment] = useState('');
+  const [price, setPrice] = useState('');
+
   useEffect(() => {
 
     if(data && isOpen){    
       setSelectedOptions(data.data)
+      if(data.size === "Pequena"){
+        setPrice("R$ 10,00")
+      }else if( data.size === "Media"){
+        setPrice("R$ 15,00")
+      }else{
+        setPrice("R$ 20,00")
+      }
     }
     
 },[data,isOpen])
@@ -68,14 +78,18 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
                       type="radio"
                       name="pagamento"
                       className="radio-pagamento"
-                    ></input>
+                      value="cartao"
+                      onChange={e => setPayment(e.target.value)}
+                    />
                     <label htmlFor="cartao">cartão</label>
 
                     <input
                       type="radio"
                       name="pagamento"
                       className="radio-pagamento"
-                    ></input>
+                      value="pix"
+                      onChange={e => setPayment(e.target.value)}
+                    />
                     <label htmlFor="pix">pix</label>
                   </p>
                 </div>
@@ -85,15 +99,17 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
                       type="radio"
                       name="pagamento"
                       className="radio-pagamento"
-                    ></input>
+                      value="dinheiro"
+                      onChange={e => setPayment(e.target.value)}
+                    />
                     <label htmlFor="dinheiro">dinheiro</label>
-                    
-
                     <input
                       type="radio"
                       name="pagamento"
                       className="radio-pagamento"
-                    ></input>
+                      value="outro"
+                      onChange={e => setPayment(e.target.value)}
+                    />
                     <label htmlFor="outro">outro</label>
                   </p>
                 </div>
@@ -122,6 +138,13 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
           <Adress
             isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(false)}
+            data={{
+              data: data.data,
+              size: data.size,
+              payment: payment,
+              price: price
+            }}
+              
           />
         </ModalContainer>
       </Modal>

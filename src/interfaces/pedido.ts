@@ -4,13 +4,11 @@ import {firebaseConfig} from '../services/firebase'
 import { collection, doc, Firestore, getDoc, getDocs, getFirestore, query, QueryDocumentSnapshot, setDoc, Timestamp, updateDoc, where } from 'firebase/firestore'
 
 export interface Pedido{
-    Guarnicao: string,
-    Mistura: string,
-    Salada: string,
+    Pedido: string[];
     Tamanho: string,
     Valor: string,
-    Arquivado: number,
     Email: string
+    UserKey: string
 }
 
 interface Pedidos{
@@ -34,14 +32,13 @@ export const cadastraPedido = async (Data:Pedido) => {
 
     try {
         await setDoc(doc(ref),{
-            guarnicao: Data.Guarnicao,
-            mistura: Data.Mistura,
-            salada: Data.Salada,
+            pedido: Data.Pedido,
             tamanho: Data.Tamanho,
             valor: Data.Valor,
             data: Timestamp.now().toDate().toLocaleDateString('pt-br', {dateStyle: "long"}),
             arquivado: 0,
-            email: Data.Email
+            email: Data.Email,
+            chaveUser: Data.UserKey
         })
         
         return 1
