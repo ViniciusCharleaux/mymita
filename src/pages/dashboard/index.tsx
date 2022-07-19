@@ -63,7 +63,8 @@ export const Dashboard: React.FC = () => {
           <Header title1="cardápio" title2="contato"></Header>
         </div>
 
-        {activeOrder.arquivado ? (
+        {activeOrder.arquivado < 3 ?
+        (
           <div className="estado-pedido">
             <EstadoPedido
               status={activeOrder.arquivado}

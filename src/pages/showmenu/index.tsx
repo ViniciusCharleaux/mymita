@@ -2,17 +2,10 @@ import { Container } from './styles';
 import { Header } from '../../components/Header'
 import { images } from '../../constants';
 import { useEffect, useState } from 'react';
-
-import { MiniLoading } from '../../components/Loading';
-
-// import {buscaLogin, createUser, CreateUserData} from '../../interfaces/user'
-
 import { useNavigate } from 'react-router-dom'
-
 import { useAuth } from '../../hooks/auth';
-import { useToast } from '../../hooks/toast';
-
 import {Order} from '../order';
+import {hasActivePedido} from '../../interfaces/pedido';
 
 import {Cardapio, buscaCardapio, cadastraCardapio} from '../../interfaces/cardapio';
 import { EditMenuModal } from '../Adm/EditMenuModal';
@@ -42,6 +35,18 @@ export const ShowMenu: React.FC = () => {
     fetchCardapio()
   
   },[])
+
+  const handleNewPedido = async () => {
+    if(user){
+      const res = await hasActivePedido(user.Key)
+
+      if(res.arquivado){
+        alert("vc ja tem um pedido em andamento")
+      }else{
+        setIsModalOpen(true)
+      }
+    }
+  }
   
 
   return (
@@ -92,7 +97,7 @@ export const ShowMenu: React.FC = () => {
           :
           (
             <div className="fazer_pedido">
-              <button type="button" onClick={() => setIsModalOpen(true)}>fazer pedido</button>
+              <button type="button" onClick={handleNewPedido}>fazer pedido</button>
             </div>
           )
       

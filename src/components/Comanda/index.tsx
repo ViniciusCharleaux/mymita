@@ -33,6 +33,11 @@ export const Comanda: React.FC<PropsComanda> = ({Pedido, price, size, cliente, c
     setStatus(2)
   }
 
+  const handleFinish = () => {
+    handleFinishOrder(chave)
+    setStatus(3)
+  }
+
   return (
     <Container>
       <div className="pedido-comanda">
@@ -72,7 +77,7 @@ export const Comanda: React.FC<PropsComanda> = ({Pedido, price, size, cliente, c
           (
             <>
             <h2>Pedido em rota</h2>
-            <button onClick={handleSend}>Concluir</button>
+            <button onClick={handleFinish}>Concluir</button>
             </>
           )
           :

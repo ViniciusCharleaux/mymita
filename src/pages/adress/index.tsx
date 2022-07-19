@@ -89,8 +89,6 @@ export const Adress: React.FC<AdressProps> = ({ isOpen, onRequestClose, data}) =
                                 </div>
                             </div>
 
-                            
-
                             <div className="add-endereco">
                                 <button className="btn-add-adress">+</button>
                                 <label>Add novo endereço</label>

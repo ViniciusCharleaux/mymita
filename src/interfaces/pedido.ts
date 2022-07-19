@@ -152,7 +152,7 @@ export const hasActivePedido = async (UserKey:string): Promise<Pedidos> => {
 
         console.log(QueryDocumentSnapshot.get("arquivado"))
 
-        if(QueryDocumentSnapshot.get("arquivado") < 4 ){
+        if(QueryDocumentSnapshot.get("arquivado") < 3 ){
             const docP:Pedidos = {     
                 pedidos: QueryDocumentSnapshot.data().pedido,       
                 tamanho: QueryDocumentSnapshot.get("tamanho"),

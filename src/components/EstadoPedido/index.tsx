@@ -26,13 +26,11 @@ export const EstadoPedido: React.FC<EstadoPedidoProps> = ({status}) => {
       ):
       null
     }
-      
-      
 
       <div className="delivery-bar">
         <MdDeliveryDining size={60} />
-        <div className={`aceito ${status === 1 ? "etapa-on": "etapa-off"}`}></div>
-        <div className={`preparo ${status === 2 ? "etapa-on": "etapa-off"}`}></div>
+        <div className={`aceito ${status >= 1 ? "etapa-on": "etapa-off"}`}></div>
+        <div className={`preparo ${status >= 2 ? "etapa-on": "etapa-off"}`}></div>
         <div className={`enviado ${status === 3 ? "etapa-on": "etapa-off"}`}></div>
       </div>
     </Container>

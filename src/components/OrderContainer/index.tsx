@@ -26,21 +26,21 @@ export const OrderContainer:React.FC<OrdemContainerProps> = ({data, pagamento, v
                     <p className='historic-desc'>valor: {valor}</p>
                     <p className='historic-desc'>pagamento em: {pagamento || "pix"}</p>
                 </> 
-                {arquivado !== 3 
+                {arquivado !== 4 
                 ? 
                     (
-                        arquivado === 2 ?
-                            <h6 className="cancelled">rejeitado</h6>
-                            : arquivado === 4 ?
-                            <h6 className="cancelled">cancelado</h6>
-                            : arquivado === 0 ?
+                        arquivado === 0 ?
                             <h6 className="cancelled">aguardando confirmação</h6>
+                            : arquivado === 1 ?
+                            <h6 className="cancelled">em preparo</h6>
+                            : arquivado === 2 ?
+                            <h6 className="cancelled">em rota de entrega</h6>
                             :
-                            <h6 className="cancelled">ativo</h6>
+                            <h6 className="cancelled">concluido</h6>
                     )
                 :
                     (
-                        null
+                        <h6 className="cancelled">rejeitado</h6>
                     )
                 }
                 
