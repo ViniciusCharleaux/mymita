@@ -4,6 +4,8 @@ import { Container, ModalContainer } from "./styles";
 import { Adress } from "../adress";
 import images from "../../constants/images";
 
+import {useToast} from '../../hooks/toast'
+
 interface Data {
   data: string[];
   size: string;
@@ -21,8 +23,10 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([])
 
-  const [payment, setPayment] = useState('');
+  const [payment, setPayment] = useState('dinheiro');
   const [price, setPrice] = useState('');
+
+  const {toastTopError} = useToast()
 
   useEffect(() => {
 
@@ -79,7 +83,7 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
                       name="pagamento"
                       className="radio-pagamento"
                       value="cartao"
-                      onChange={e => setPayment(e.target.value)}
+                      onChange={e => setPayment("cartao")}
                     />
                     <label htmlFor="cartao">cartão</label>
 
@@ -88,7 +92,7 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
                       name="pagamento"
                       className="radio-pagamento"
                       value="pix"
-                      onChange={e => setPayment(e.target.value)}
+                      onChange={e => setPayment("pix")}
                     />
                     <label htmlFor="pix">pix</label>
                   </p>
@@ -100,7 +104,8 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
                       name="pagamento"
                       className="radio-pagamento"
                       value="dinheiro"
-                      onChange={e => setPayment(e.target.value)}
+                      checked={true}
+                      onChange={e => setPayment("dinheiro")}
                     />
                     <label htmlFor="dinheiro">dinheiro</label>
                     <input
@@ -108,7 +113,7 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
                       name="pagamento"
                       className="radio-pagamento"
                       value="outro"
-                      onChange={e => setPayment(e.target.value)}
+                      onChange={e => setPayment("outro")}
                     />
                     <label htmlFor="outro">outro</label>
                   </p>

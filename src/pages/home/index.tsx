@@ -5,7 +5,7 @@ import { BsFacebook } from "react-icons/bs";
 import { images } from "../../constants";
 import { SetStateAction, useState } from "react";
 
-import { MiniLoading } from "../../components/Loading";
+import { MiniLoading } from "../../components/loadings";
 
 // import {buscaLogin, createUser, CreateUserData} from '../../interfaces/user'
 

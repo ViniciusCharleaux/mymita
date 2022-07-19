@@ -4,6 +4,8 @@ import images from "../../constants/images";
 import { Container, ModalContainer } from './styles';
 import { Payment } from '../payment';
 
+import {useToast} from '../../hooks/toast'
+
 interface OrderProps {
     isOpen: boolean;
     onRequestClose: () => void;
@@ -24,11 +26,9 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([])
     const [finalSelections, setFinalSelections] = useState<string[]>([])
 
-    //const [guarnicaoSplitted, setGuarnicaoSplitted] = useState<string[]>([])
+    const [size, setSize] = useState('Pequena');
 
-    const [size, setSize] = useState('');
-
-
+    const {toastTopError} = useToast()
 
     useEffect(() => {
 
@@ -48,13 +48,21 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
     }
 
     const handleSubmit = () => {
+
+        let isAbleToSubmit = false;
+
         selectedOptions.forEach((option) => {
             if (option.isSelected){
                 setFinalSelections((prevState) => [...prevState, option.option])
+                isAbleToSubmit = true;
             }
         })
-
-        setIsModalOpen(true)
+        if(isAbleToSubmit){
+            setIsModalOpen(true)
+        }else{
+            toastTopError("Nenhuma opção selecionada")
+        }
+        
     }
 
     return (
@@ -99,6 +107,7 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                                           className="radio-tamanho"
                                           value="Pequena"
                                           onChange={e =>setSize(e.target.value)}
+                                          checked={true}
                                          />
                                         <input 
                                             type="radio" 

@@ -86,7 +86,7 @@ export const Comanda: React.FC<PropsComanda> = ({Pedido, price, size, cliente, c
             <h2>Pedido concluído</h2>
           )
           :
-          null
+          <h2>Pedido rejeitado</h2>
         )
       }
         

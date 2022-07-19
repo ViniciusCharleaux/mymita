@@ -2,24 +2,25 @@ import { Container } from './styles';
 import { Header } from '../../components/Header'
 import { images } from '../../constants';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/auth';
 import {Order} from '../order';
 import {hasActivePedido} from '../../interfaces/pedido';
-
-import {Cardapio, buscaCardapio, cadastraCardapio} from '../../interfaces/cardapio';
+import {Cardapio, buscaCardapio,} from '../../interfaces/cardapio';
 import { EditMenuModal } from '../Adm/EditMenuModal';
-
+import {Loading} from '../../components/loadings'
+import {useToast} from '../../hooks/toast';
+ 
 
 // procurar remover depois. pagina nao mostra sem. 
 export const ShowMenu: React.FC = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
-
   const [cardapioHoje, setCardapio] = useState<Cardapio>({} as Cardapio);
+  const [loading, setLoading] = useState(false);
 
   const {user} = useAuth();
+  const {toastTopError} = useToast();
   
   const date = new Date().toLocaleDateString('pt-BR').split('/')
   const today = date[0] + '/' + date[1]
@@ -27,21 +28,23 @@ export const ShowMenu: React.FC = () => {
   useEffect(() => {
 
     const fetchCardapio = async ()=> {        
-
+      setLoading(true)
       const a = await buscaCardapio();
       setCardapio(a[0]);
-  
+      setLoading(false)
     }
+
+    
     fetchCardapio()
-  
+    
   },[])
 
   const handleNewPedido = async () => {
     if(user){
       const res = await hasActivePedido(user.Key)
 
-      if(res.arquivado){
-        alert("vc ja tem um pedido em andamento")
+      if(res.arquivado < 3){
+        toastTopError("Você tem um pedido em andamento, aguarde a conclusão do mesmo para iniciar um novo.")
       }else{
         setIsModalOpen(true)
       }
@@ -62,28 +65,32 @@ export const ShowMenu: React.FC = () => {
           <div className="center">
             <div className="left">
               <p>Guarnição</p>
+
+              {loading ?
+              <Loading />
+              :
               <div className="guarnicao-container">
-
-              {cardapioHoje?.Guarnicao?.split(", ").map((guarnicao,index) => (
-                <a key={index}>{guarnicao}</a>
-
-                
-              ))}
-
-
+                {cardapioHoje?.Guarnicao?.split(", ").map((guarnicao,index) => (
+                  <a key={index}>{guarnicao}</a>              
+                ))}
               </div>
+            }
+              
               
             </div>
             <div className="right">
-              <p>Mistura</p>
-                            
-              <div className="mistura-container">
+              <p>Mistura</p>         
+              {loading ?
+                <Loading />
+              :
+                <div className="mistura-container">
+                  {cardapioHoje?.Mistura?.split(", ").map((mistura,index) => (
+                    <a key={index}>{mistura}</a>
+                  ))}
+                </div>
+              }
 
-              {cardapioHoje?.Mistura?.split(", ").map((mistura,index) => (
-                <a key={index}>{mistura}</a>
-              ))}
-
-              </div>
+              
             </div>
           </div>
 

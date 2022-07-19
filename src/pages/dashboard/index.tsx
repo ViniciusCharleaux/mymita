@@ -9,6 +9,7 @@ import { PedidoAgenda } from "../../components/PedidoAgenda";
 
 import {buscaPedidoByUser, Pedidos, hasActivePedido} from '../../interfaces/pedido';
 import { useEffect, useState } from "react";
+import { Loading } from "../../components/loadings";
 
 
 export const Dashboard: React.FC = () => {
@@ -19,13 +20,17 @@ export const Dashboard: React.FC = () => {
   const [orderHistoric, setOrderHistoric] = useState<Pedidos[]>([]);
   const [activeOrder, setActiveOrder] = useState<Pedidos>({} as Pedidos);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
 
     const fetchPedidos = async()=>{
       if(user){
+        setLoading(true);
         setOrderHistoric(await buscaPedidoByUser(user.Key))
         setActiveOrder(await hasActivePedido(user.Key))
       }
+      setLoading(false);
     }
 
     fetchPedidos()
@@ -61,40 +66,47 @@ export const Dashboard: React.FC = () => {
       <main>
         <div className="header">
           <Header title1="cardápio" title2="contato"></Header>
-        </div>
+        </div> 
 
-        {activeOrder.arquivado < 3 ?
-        (
-          <div className="estado-pedido">
-            <EstadoPedido
-              status={activeOrder.arquivado}
-            />
-          </div>
-        ) : null}
-
-        <div className="center">
-          <div className="left">
-            <p>histórico de pedidos</p>
-            <div className="historic-container">
-              {orderHistoric?.map((pedido, index) => (
-                <OrderContainer
-                  key={index}
-                  data={pedido.data}
-                  pagamento={pedido.pagamento}
-                  valor={pedido.valor}
-                  arquivado={pedido.arquivado}
+        {
+          loading ? <Loading /> 
+          :
+          <>
+          {activeOrder.arquivado < 3 ?
+            (
+              <div className="estado-pedido">
+                <EstadoPedido
+                  status={activeOrder.arquivado}
                 />
-              ))}
-            </div>
-          </div>
-          <div className="right">
-            <p>agenda de pedidos</p>
-            <div className="agenda-container">
-              <PedidoAgenda />
-              <PedidoAgenda />
-            </div>
-          </div>
-        </div>
+              </div>
+            ) : null}
+      
+              <div className="center">
+                <div className="left">
+                  <p>histórico de pedidos</p>
+                  <div className="historic-container">
+                    {orderHistoric?.map((pedido, index) => (
+                      <OrderContainer
+                        key={index}
+                        data={pedido.data}
+                        pagamento={pedido.pagamento}
+                        valor={pedido.valor}
+                        arquivado={pedido.arquivado}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="right">
+                  <p>agenda de pedidos</p>
+                  <div className="agenda-container">
+                    <PedidoAgenda />
+                    <PedidoAgenda />
+                  </div>
+                </div>
+              </div>    
+          </>
+        }
+          
       </main>
     </Container>
   );
