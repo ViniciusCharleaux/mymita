@@ -127,8 +127,6 @@ export const buscaPedidoByUser = async (UserKey:string): Promise<Pedidos[]> => {
         P.push(docP);
     });
 
-    console.log(P)
-
     return P.reverse();
 }
 
@@ -139,4 +137,40 @@ export const mudaStatusPedido = async (chave:string, status: number) => {
     await updateDoc(ref, {
         arquivado: status
     });
+}
+
+export const hasActivePedido = async (UserKey:string): Promise<Pedidos> => {
+    let activePedido: Pedidos = {} as Pedidos;
+
+    const ref = collection(firestore, "pedidos");    
+
+    const q = query(ref, where("cliente.chave", "==", UserKey));
+    const querySnapshot = await getDocs(q); 
+
+
+    querySnapshot.forEach(QueryDocumentSnapshot=>{
+
+        console.log(QueryDocumentSnapshot.get("arquivado"))
+
+        if(QueryDocumentSnapshot.get("arquivado") < 4 ){
+            const docP:Pedidos = {     
+                pedidos: QueryDocumentSnapshot.data().pedido,       
+                tamanho: QueryDocumentSnapshot.get("tamanho"),
+                valor: QueryDocumentSnapshot.get("valor"),
+                pagamento: QueryDocumentSnapshot.get("pagamento"),
+                arquivado: QueryDocumentSnapshot.get("arquivado"),
+                data: QueryDocumentSnapshot.get("data"),
+                email: QueryDocumentSnapshot.get("email"),
+                chave: QueryDocumentSnapshot.id,
+                cliente: QueryDocumentSnapshot.get("cliente")
+            };
+
+            activePedido = docP;
+        }
+       
+    });
+
+    console.log(activePedido);
+
+    return activePedido;
 }

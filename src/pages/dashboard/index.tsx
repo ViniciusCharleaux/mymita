@@ -7,7 +7,7 @@ import { OrderContainer } from "../../components/OrderContainer";
 import { EstadoPedido } from "../../components/EstadoPedido";
 import { PedidoAgenda } from "../../components/PedidoAgenda";
 
-import {buscaPedidoByUser, Pedidos} from '../../interfaces/pedido';
+import {buscaPedidoByUser, Pedidos, hasActivePedido} from '../../interfaces/pedido';
 import { useEffect, useState } from "react";
 
 
@@ -17,12 +17,14 @@ export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
 
   const [orderHistoric, setOrderHistoric] = useState<Pedidos[]>([]);
+  const [activeOrder, setActiveOrder] = useState<Pedidos>({} as Pedidos);
 
   useEffect(() => {
 
     const fetchPedidos = async()=>{
       if(user){
         setOrderHistoric(await buscaPedidoByUser(user.Key))
+        setActiveOrder(await hasActivePedido(user.Key))
       }
     }
 
@@ -61,9 +63,11 @@ export const Dashboard: React.FC = () => {
           <Header title1="cardápio" title2="contato"></Header>
         </div>
 
-        {false ? (
+        {activeOrder.arquivado ? (
           <div className="estado-pedido">
-            <EstadoPedido />
+            <EstadoPedido
+              status={activeOrder.arquivado}
+            />
           </div>
         ) : null}
 

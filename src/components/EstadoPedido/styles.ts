@@ -7,6 +7,14 @@ export const Container = styled.div`
     align-items: center;
     text-align: center;
 
+    .etapa-on{
+        background-color: #40D627; 
+    }
+
+    .etapa-off{
+        background-color: #C4C4C4; 
+    }
+
     .status{
         font-family: "fredoka one";
         font-size: 25px;
@@ -28,21 +36,18 @@ export const Container = styled.div`
         .aceito{
             width: 12rem;
             height: 0.5rem;
-            background: #C4C4C4;
             border-radius: 5px;
         }
 
         .preparo{
             width: 12rem;
             height: 0.5rem;
-            background: #C4C4C4;
             border-radius: 5px;
         }
 
         .enviado{
             width: 12rem;
             height: 0.5rem;
-            background: #C4C4C4;
             border-radius: 5px;
         }
     }

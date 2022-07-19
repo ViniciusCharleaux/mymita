@@ -72,12 +72,6 @@ export const OrderList: React.FC = () => {
                   
         })} 
 
-      {/* <Comanda 
-        Guarnicao="teste"
-        Mistura="teste"
-        Tamanho = "teste"
-       /> */}
-
         </div>
       </div>      
 
