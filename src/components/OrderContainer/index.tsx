@@ -21,6 +21,11 @@ export const OrderContainer:React.FC<OrdemContainerProps> = ({data, pagamento, v
                 </svg>
             </div>
             <div className='right_pedido'>
+                <>
+                    <h6>{data}</h6>
+                    <p className='historic-desc'>valor: {valor}</p>
+                    <p className='historic-desc'>pagamento em: {pagamento || "pix"}</p>
+                </> 
                 {arquivado !== 3 
                 ? 
                     (
@@ -35,12 +40,7 @@ export const OrderContainer:React.FC<OrdemContainerProps> = ({data, pagamento, v
                     )
                 :
                     (
-                        <>
-                            <h6>{data}</h6>
-                            <p className='historic-desc'>valor: {valor}</p>
-                            <p className='historic-desc'>pagamento em: {pagamento || "pix"}</p>
-                            <p className='historic-desc'>entrega bem sucedida</p>
-                        </> 
+                        null
                     )
                 }
                 

@@ -25,16 +25,21 @@ export const OrderList: React.FC = () => {
   },[])
 
   const handleAcceptOrder = async (chave:string) => {
-
     await mudaStatusPedido(chave, 1)
+  }
+  
+  const handleSendOrder = async (chave:string) => {
+    await mudaStatusPedido(chave, 2)
+  }
 
+  const handleFinishOrder = async (chave:string) => {
+    await mudaStatusPedido(chave, 3)
   }
 
   const handleCancelOrder = async (chave:string) => {
-
-    await mudaStatusPedido(chave, 2)
-
+    await mudaStatusPedido(chave, 4)
   }
+
 
   return (
     <Container>
@@ -57,8 +62,11 @@ export const OrderList: React.FC = () => {
               cliente={pedido.cliente.nome}
               size={pedido.tamanho}
               chave={pedido.chave}
+              arquivado={pedido.arquivado}
               handleAcceptOrder={handleAcceptOrder}
               handleCancelOrder={handleCancelOrder}
+              handleSendOrder={handleSendOrder}
+              handleFinishOrder={handleFinishOrder}
            />  
           )
                   
