@@ -26,6 +26,7 @@ export const Container = styled.div`
   h2{
     font-family: "fredoka one";
     margin-bottom: 1rem;
+    font-size: 15px;
   }
   
   header{

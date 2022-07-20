@@ -57,7 +57,6 @@ export const Comanda: React.FC<PropsComanda> = ({Pedido, price, size, cliente, c
         ? 
         (
           <>
-            <h2>Aguardando confirmação</h2>
             <button onClick={handleAccept}>confirmar</button>
             <button onClick={handleReject} className="rejeitar">rejeitar</button>
           </>
