@@ -22,6 +22,11 @@ export const Container = styled.div`
   h3, h4, span{
     font-family: "fredoka one";
   }
+
+  h2{
+    font-family: "fredoka one";
+    margin-bottom: 1rem;
+  }
   
   header{
       width: 100%;
