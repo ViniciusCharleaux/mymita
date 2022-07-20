@@ -107,22 +107,21 @@ export const Order: React.FC<OrderProps> = ({ isOpen, onRequestClose, data}) => 
                                           className="radio-tamanho"
                                           value="Pequena"
                                           onChange={e =>setSize(e.target.value)}
-                                          checked={true}
-                                         />
+                                         /><label className="tamanho-escolhido-P">P</label>
                                         <input 
                                             type="radio" 
                                             name="tamanho" 
                                             className="radio-tamanho" 
                                             value="Media" 
                                             onChange={e => setSize(e.target.value)}
-                                        />
+                                        /><label className="tamanho-escolhido-M">M</label>
                                         <input 
                                             type="radio" 
                                             name="tamanho" 
                                             className="radio-tamanho"
                                             value="Grande" 
                                             onChange={e => setSize(e.target.value)}
-                                        />
+                                        /><label className="tamanho-escolhido-G">G</label>
                                     </p>
                                 </div>
 
