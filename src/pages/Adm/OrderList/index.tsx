@@ -1,12 +1,21 @@
 import { Container } from "./styles";
 import { Comanda } from "../../../components/Comanda";
 import { Header } from "../../../components/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {Pedidos, buscaPedido, cadastraPedido, mudaStatusPedido} from "../../../interfaces/pedido"
 import { useEffect, useState } from "react";
+import { useAuth } from "../../../hooks/auth";
 
 export const OrderList: React.FC = () => {
+
+  const { logOut, user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logOut();
+    navigate("/");
+  };
 
   const [pedidosHoje, setPedidos] = useState<Pedidos[]>([]);
 
@@ -75,9 +84,7 @@ export const OrderList: React.FC = () => {
         </div>
       </div>      
 
-      <Link to="/home">
-        <div className="btn-sair-adm">sair</div>
-      </Link>
+      <button className="btn-sair-adm" onClick={handleLogout}>sair</button>
       <br></br>
     </Container>
   );
