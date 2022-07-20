@@ -104,7 +104,6 @@ export const Payment: React.FC<PaymentProps> = ({ isOpen, onRequestClose, data }
                       name="pagamento"
                       className="radio-pagamento"
                       value="dinheiro"
-                      checked={true}
                       onChange={e => setPayment("dinheiro")}
                     />
                     <label htmlFor="dinheiro">dinheiro</label>
