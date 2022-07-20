@@ -19,9 +19,10 @@ export const Container = styled.div`
     flex-direction: column;
   }
 
-  h3, h4{
+  h3, h4, span{
     font-family: "fredoka one";
   }
+  
   header{
       width: 100%;
       height: 50px;
