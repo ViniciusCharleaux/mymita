@@ -1,15 +1,15 @@
 import { Container } from "./styles";
 import { Comanda } from "../../../components/Comanda";
 import { Header } from "../../../components/Header";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import {Pedidos, buscaPedido, cadastraPedido, mudaStatusPedido} from "../../../interfaces/pedido"
+import {Pedidos, buscaPedido, mudaStatusPedido} from "../../../interfaces/pedido"
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../hooks/auth";
 
 export const OrderList: React.FC = () => {
 
-  const { logOut, user } = useAuth();
+  const { logOut } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
